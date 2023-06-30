@@ -56,17 +56,17 @@ async def start(message: Message):
 
 
 async def service(message: Message):
-    await message.answer(f'Служба заботы', reply_markup=markup_lk)
+    await message.answer(f'С другой стороны, социально-экономическое развитие однозначно фиксирует необходимость анализа существующих паттернов поведения. Современные технологии достигли такого уровня, что курс на социально-ориентированный национальный проект однозначно определяет каждого участника как способного принимать собственные решения касаемо дальнейших направлений развития. В своём стремлении улучшить пользовательский опыт мы упускаем, что представители современных социальных резервов описаны максимально подробно!', reply_markup=markup_lk)
 
 
 async def competition(message: Message):
-    await message.answer(f'Конкурс', reply_markup=markup_competition)
+    await message.answer(f'Ясность нашей позиции очевидна: понимание сути ресурсосберегающих технологий выявляет срочную потребность анализа существующих паттернов поведения.', reply_markup=markup_competition)
 
 
 async def faq_info(callback_query: CallbackQuery):
     bot: Bot = callback_query.bot
     user_id = callback_query.from_user.id
-    await bot.send_message(user_id, "Бебры не все в адидасах(((☹️\n")
+    await bot.send_message(user_id, "Принимая во внимание показатели успешности, убеждённость некоторых оппонентов предоставляет широкие возможности для инновационных методов управления процессами.\n")
 
 
 async def wa_link(callback_query: CallbackQuery):
@@ -75,7 +75,7 @@ async def wa_link(callback_query: CallbackQuery):
     #                             'link link link')
     bot: Bot = callback_query.bot
     user_id = callback_query.from_user.id
-    await bot.send_message(user_id, "Бебры все в адидасах!!🥳\n")
+    await bot.send_message(user_id, "Прежде всего, синтетическое тестирование, в своём классическом представлении, допускает внедрение экспериментов, поражающих по своей масштабности и грандиозности.\n")
 
 
 async def competition_link(callback_query: CallbackQuery):
@@ -101,10 +101,17 @@ async def get_link(message: Message, state: FSMContext):
     user_link = message.from_user.url
     user_link_nice = message.from_user.username
     link = message.text
-    print(user_link, user_link_nice)
-    upd_link(user_id, link)
-    await message.answer(f'Ссылка принята')
-    await state.finish()
+    print(link)
+    if link[0:30] == 'https://www.instagram.com/reel':
+
+        upd_link(user_id, link)
+        await message.answer(f'Ссылка принята')
+        await state.finish()
+    else:
+        # print(user_link, user_link_nice)
+        # upd_link(user_id, link)
+        await message.answer(f'Ссылка не с платформы Instagram')
+        await state.finish()
 
 
 def register_users_handlers(dp: Dispatcher) -> None:
