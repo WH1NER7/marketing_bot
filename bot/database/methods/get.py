@@ -10,3 +10,12 @@ def check_link(user_id):
             return False
     else:
         return False
+
+
+def get_all_links():
+    data = db['promo_bot'].find({})
+    links = []
+    for doc in data:
+        links.append(doc.get('reels_link'))
+
+    return links
