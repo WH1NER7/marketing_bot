@@ -3,13 +3,14 @@ from aiogram.types import ReplyKeyboardRemove, \
     InlineKeyboardMarkup, InlineKeyboardButton
 
 markup_lk = InlineKeyboardMarkup(row_width=1)
-inline_btn_1 = InlineKeyboardButton('FAQ', callback_data='faq')
-inline_btn_2 = InlineKeyboardButton('Ссылка на WA', callback_data='wa_link')
+inline_btn_1 = InlineKeyboardButton('Часто задаваемые вопросы', callback_data='faq')
+inline_btn_2 = InlineKeyboardButton('Помогите мне! У меня проблема', callback_data='problems')
 markup_lk.add(inline_btn_1, inline_btn_2)
 
 markup_competition = InlineKeyboardMarkup(row_width=1)
 competition_btn_1 = InlineKeyboardButton('Добавить ссылку на Reels', callback_data='reels_link')
-markup_competition.add(competition_btn_1)
+competition_btn_2 = InlineKeyboardButton('Подробнее условия конкурса', callback_data='competition_full_info')
+markup_competition.add(competition_btn_1, competition_btn_2)
 
 markup_link = InlineKeyboardMarkup(row_width=1)
 link_btn_1 = InlineKeyboardButton('Хочу изменить', callback_data='reels_link_upd')
@@ -31,3 +32,28 @@ shop_btn_2 = InlineKeyboardButton('ОЗОН', callback_data='ozon')
 shop_btn_3 = InlineKeyboardButton('ДЕТСКИЙ МИР', callback_data='detmir')
 shop_btn_4 = InlineKeyboardButton('Л`ЭТУАЛЬ', callback_data='letual')
 shop_kb.add(shop_btn_1, shop_btn_2, shop_btn_3, shop_btn_4)
+
+
+problems_kb = InlineKeyboardMarkup(row_width=1)
+problem_btn_1 = InlineKeyboardButton('Не мой размер (большемерит / маломерит)', callback_data='not_my_size')
+problem_btn_2 = InlineKeyboardButton('Линяет', callback_data='shed')
+problem_btn_3 = InlineKeyboardButton('Брак', callback_data='defective_goods')
+problem_btn_4 = InlineKeyboardButton('Недокомплект', callback_data='not_full_complect')
+problem_btn_5 = InlineKeyboardButton('Торчащие нитки', callback_data='protruding_threads')
+problem_btn_6 = InlineKeyboardButton('Аллергия', callback_data='allergy')
+problem_btn_7 = InlineKeyboardButton('Проблема с упаковкой', callback_data='bad_packing')
+problem_btn_8 = InlineKeyboardButton('Пятна грязь', callback_data='dirty')
+problem_btn_9 = InlineKeyboardButton('Не понравился', callback_data='did_not_like')
+problem_btn_10 = InlineKeyboardButton('Пришел не наш товар', callback_data='wrong_good')
+problem_btn_11 = InlineKeyboardButton('Не нравится качество', callback_data='bad_quality')
+problem_btn_12 = InlineKeyboardButton('Комплект разного оттенка', callback_data='different_shades')
+problem_btn_13 = InlineKeyboardButton('Свяжите меня с менеджером', callback_data='manager_bitrix')
+problems_kb.add(problem_btn_1, problem_btn_2, problem_btn_3, problem_btn_4, problem_btn_5, problem_btn_6, problem_btn_7,
+                problem_btn_8, problem_btn_9, problem_btn_10, problem_btn_11, problem_btn_12, problem_btn_13)
+
+
+markup_competition_extra = InlineKeyboardMarkup(row_width=1)
+competition_extra_btn_1 = InlineKeyboardButton('Добавить ссылку на Reels', callback_data='reels_link')
+competition_extra_btn_2 = InlineKeyboardButton('Получить подарок', callback_data='get_gift')
+competition_extra_btn_3 = InlineKeyboardButton('Прочитать оферту', callback_data='oferta')
+markup_competition_extra.add(competition_extra_btn_1, competition_extra_btn_2, competition_extra_btn_3)
