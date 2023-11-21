@@ -47,7 +47,7 @@ problem_btn_9 = InlineKeyboardButton('Не понравился', callback_data=
 problem_btn_10 = InlineKeyboardButton('Пришел не наш товар', callback_data='wrong_good')
 problem_btn_11 = InlineKeyboardButton('Не нравится качество', callback_data='bad_quality')
 problem_btn_12 = InlineKeyboardButton('Комплект разного оттенка', callback_data='different_shades')
-problem_btn_13 = InlineKeyboardButton('Свяжите меня с менеджером', callback_data='manager_bitrix')
+problem_btn_13 = InlineKeyboardButton(text="Свяжите меня с менеджером", url="https://t.me/missyourkiss_manager_bot")
 problems_kb.add(problem_btn_1, problem_btn_2, problem_btn_3, problem_btn_4, problem_btn_5, problem_btn_6, problem_btn_7,
                 problem_btn_8, problem_btn_9, problem_btn_10, problem_btn_11, problem_btn_12, problem_btn_13)
 
@@ -57,3 +57,13 @@ competition_extra_btn_1 = InlineKeyboardButton('Добавить ссылку н
 competition_extra_btn_2 = InlineKeyboardButton('Получить подарок', callback_data='get_gift')
 competition_extra_btn_3 = InlineKeyboardButton('Прочитать оферту', callback_data='oferta')
 markup_competition_extra.add(competition_extra_btn_1, competition_extra_btn_2, competition_extra_btn_3)
+
+faq_kb_upd = InlineKeyboardMarkup(row_width=1)
+faq_kb_btn2 = InlineKeyboardButton(text="Получить гайд", url="https://t.me/missyourkiss_manager_bot")
+faq_kb_upd.add(faq_kb_btn2)
+
+
+problems_kb_add = InlineKeyboardMarkup(row_width=1)
+problems_kb_btn1 = InlineKeyboardButton(text="Свяжите меня с менеджером", url="https://t.me/missyourkiss_manager_bot")
+problems_kb_btn2 = InlineKeyboardButton(text="Получить гайд", url="https://t.me/missyourkiss_manager_bot")
+problems_kb_add.add(problems_kb_btn1, problems_kb_btn2)
