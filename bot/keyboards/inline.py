@@ -65,5 +65,5 @@ faq_kb_upd.add(faq_kb_btn2)
 
 problems_kb_add = InlineKeyboardMarkup(row_width=1)
 problems_kb_btn1 = InlineKeyboardButton(text="Свяжите меня с менеджером", url="https://t.me/missyourkiss_manager_bot")
-problems_kb_btn2 = InlineKeyboardButton(text="Получить гайд", url="https://t.me/missyourkiss_manager_bot")
+problems_kb_btn2 = InlineKeyboardButton(text="Получить гайд", url="https://b24-dvx7b9.bitrix24.site/crm_form_ru7u6/")
 problems_kb_add.add(problems_kb_btn1, problems_kb_btn2)
