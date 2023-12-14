@@ -62,6 +62,9 @@ faq_kb_upd = InlineKeyboardMarkup(row_width=1)
 faq_kb_btn2 = InlineKeyboardButton(text="Получить гайд", url="https://t.me/missyourkiss_manager_bot")
 faq_kb_upd.add(faq_kb_btn2)
 
+faq_kb_defect = InlineKeyboardMarkup(row_width=1)
+faq_kb_defect_btn1 = InlineKeyboardButton(text="Получить гайд", url="https://t.me/missyourkiss_manager_bot")
+faq_kb_defect.add(faq_kb_defect_btn1)
 
 problems_kb_add = InlineKeyboardMarkup(row_width=1)
 problems_kb_btn1 = InlineKeyboardButton(text="Свяжите меня с менеджером", url="https://t.me/missyourkiss_manager_bot")

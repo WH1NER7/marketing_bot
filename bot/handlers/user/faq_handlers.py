@@ -1,7 +1,7 @@
 from aiogram import Dispatcher, Bot
 from aiogram.types import CallbackQuery
 
-from bot.keyboards.inline import faq_kb_upd
+from bot.keyboards.inline import faq_kb_upd, faq_kb_defect
 
 
 async def uhod(callback_query: CallbackQuery):
@@ -34,7 +34,7 @@ async def defect(callback_query: CallbackQuery):
     \n\
 И мы оперативно решим ваш вопрос.\n\
     \n\
-У Вас есть уникальная возможность получить “Гайд по стилю” из 30 страниц. ", reply_markup=faq_kb_upd)
+У Вас есть уникальная возможность получить “Гайд по стилю” из 30 страниц. ", reply_markup=faq_kb_defect)
 
 
 async def cert(callback_query: CallbackQuery):
