@@ -185,10 +185,31 @@ async def our_shop_link(message: Message):
     await message.answer(text_with_link, parse_mode=types.ParseMode.MARKDOWN, reply_markup=shop_kb)
 
 
+async def HNYear_present(message: Message):
+    text_with_link = "Страстный красный комплект\n\
+Артикул: [196719351](https://missyourkiss.mobz.click/radmyk)\n\
+\n\
+Чувственный пудровый комплект\n\
+Артикул: [196717464](https://missyourkiss.mobz.click/pudramyk)\n\
+\n\
+Интригующий чёрный комплект\n\
+Артикул: [196720365](https://missyourkiss.mobz.click/blackmyk)\n\
+\n\
+Чёрные трусики в подарочном мешочке\n\
+Артикул: [196691686](https://missyourkiss.mobz.click/drblackmyk)\n\
+\n\
+Пудровые трусики в подарочном мешочке\n\
+Артикул: [196692315](https://missyourkiss.mobz.click/drpudramyk)\n\
+"
+
+    await message.answer(text_with_link, parse_mode=types.ParseMode.MARKDOWN)
+
+
 def register_users_handlers(dp: Dispatcher) -> None:
     dp.register_message_handler(start, commands=["start"])
     dp.register_message_handler(service, content_types=['text'], text="Служба заботы")
     dp.register_message_handler(competition, content_types=['text'], text="Розыгрыш Iphone 15")
+    dp.register_message_handler(HNYear_present, content_types=['text'], text="Готовый подарок на Новый год")
     dp.register_message_handler(our_shop_link, content_types=['text'], text="Магазин")
     dp.register_message_handler(about_us, content_types=['text'], text="О нас")
 
