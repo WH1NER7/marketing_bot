@@ -27,9 +27,9 @@ faq_kb.add(faq_btn_1, faq_btn_2, faq_btn_3, faq_btn_4, faq_btn_5, faq_btn_6)
 
 
 shop_kb = InlineKeyboardMarkup(row_width=1)
-shop_btn_1 = InlineKeyboardButton('ВБ', url='https://www.wildberries.ru/brands/missyourkiss')
-shop_btn_2 = InlineKeyboardButton('ОЗОН', url='https://www.ozon.ru/seller/missyourkiss-1043385/products/?miniapp=seller_1043385')
-shop_kb.add(shop_btn_1, shop_btn_2)
+shop_btn_1 = InlineKeyboardButton('ВБ', url='https://www.wildberries.ru/brands/naumovabrand')
+# shop_btn_2 = InlineKeyboardButton('ОЗОН', url='https://www.ozon.ru/seller/missyourkiss-1043385/products/?miniapp=seller_1043385')
+shop_kb.add(shop_btn_1)
 
 
 problems_kb = InlineKeyboardMarkup(row_width=1)
