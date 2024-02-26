@@ -11,7 +11,7 @@ async def uhod(callback_query: CallbackQuery):
     \n\
 Во избежание разводов сушить их необходимо вдали от обогревательных приборов. Соблюдая эти простые рекомендации, вы надолго сохраните первоначальный вид изделий. \n\
 \n\
-", reply_markup=faq_kb_upd)
+")
 
 
 async def return_cb(callback_query: CallbackQuery):
@@ -39,7 +39,7 @@ async def cert(callback_query: CallbackQuery):
     bot: Bot = callback_query.bot
     user_id = callback_query.from_user.id
     await bot.send_message(user_id, "Все наши изделия имеют сертификаты соответствия.\n\
-", reply_markup=faq_kb_upd)
+")
 
 
 async def size(callback_query: CallbackQuery):
@@ -48,7 +48,7 @@ async def size(callback_query: CallbackQuery):
     await bot.send_message(user_id, "Все изделия идут в размер и полностью соответствуют размерной сетке, которая расположена среди фотографий карточек.\n\
     \n\
 Для того, чтобы изделие идеально село на вас, рекомендуем измерить все ваши параметры и подобрать размер в соответствии с таблицей.\n\
-", reply_markup=faq_kb_upd)
+")
 
 
 async def price_return(callback_query: CallbackQuery):
@@ -57,7 +57,7 @@ async def price_return(callback_query: CallbackQuery):
     await bot.send_message(user_id, "Хотим обратить ваше внимание, что нижнее белье относится к категории невозвратных товаров. Но на пункте выдачи заказов до выкупа товара вы можете вернуть его по любой причине.\n\
     \n\
 У нас нет платных отказов. Все денежные отношения на платформе, включая возвраты, регулирует сам маркетплейс.\n\
-", reply_markup=faq_kb_upd)
+")
 
 
 def register_faq_handlers(dp: Dispatcher) -> None:

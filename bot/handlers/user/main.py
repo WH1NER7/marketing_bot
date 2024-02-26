@@ -1,5 +1,5 @@
 from aiogram import Dispatcher, Bot, types
-from aiogram.types import Message, CallbackQuery
+from aiogram.types import Message, CallbackQuery, InputFile
 from aiogram.dispatcher import FSMContext
 from aiogram.dispatcher.filters.state import StatesGroup, State
 
@@ -27,7 +27,7 @@ async def start(message: Message):
 
 
 async def service(message: Message):
-    video = types.InputFile('bot/images/IMG_6456.MOV')
+    video = types.InputFile('bot/images/раздел СЛУЖБА ЗАБОТЫ.MOV')
     await message.answer_video(caption=f'Мы тщательно следим за качеством пошива наших изделий. \n\
 И всегда рады твоей обратной связи, чтобы сделать комплекты ещё лучше!🔥  \n\
 Остались вопросы? Найди ответ из предложенных в “FAQ” или свяжись с нами',
@@ -94,8 +94,7 @@ async def get_contact(message: Message):
         user_id = message.from_user.id
         create_user(user_real_name, user_second_name, user_id, user_link_nice, phone_number)
 
-        photo = types.InputFile('bot/images/для ТГ.jpg')
-        video = types.InputFile('bot/images/IMG_6397.MOV')
+        photo = types.InputFile('bot/images/Start_Naumova.png')
         await message.answer_photo(
             caption=f'Привет, на связи самый уютный бренд домашней одежды Naumova.brand \n\nРады приветствовать тебя в нашем канале. \n\nЗдесь ты самой первой будешь получать новости о свежих конкурсах, акциях и новинках😍',
             reply_markup=start_kb_markup, photo=photo)
@@ -196,18 +195,18 @@ async def get_link(message: Message, state: FSMContext):
 
 
 async def our_shop_link(message: Message):
-    photo = types.InputFile('bot/images/wb_ozon.png')
+    photo = types.InputFile('bot/images/раздел КАТАЛОГ.png')
     text_with_link = "Благодаря размещению на онлайн-площадках с собственной логистикой мы можем предлагать самые приятные цены и доставлять товар в кратчайшие сроки"
 
     await message.answer_photo(caption=text_with_link, photo=photo, parse_mode=types.ParseMode.MARKDOWN, reply_markup=shop_kb)
 
 
 async def ready_present(message: types.Message):
-    video_path = 'bot/images/IMG_9221.MOV'
+    photo_path = 'bot/images/раздел НОВИНКИ 1.jpg'
+    photo_path2 = 'bot/images/раздел НОВИНКИ 2.jpg'
 
-    text_with_link = "Мы создали невероятно комфортные ажурные пижамы для дома, которые не останутся незамеченными среди твоих близких! 😉 \n\
+    text_with_link = "Мы создали невероятно комфортные ажурные пижамы для дома, которые не останутся незамеченными среди твоих близких! 😉 \n\n\
 Уже доступны к заказу 👇 \n\
-\n\
 \n\
 В белом цвете\n\
 Артикул: [205953343](https://www.wildberries.ru/catalog/205953343/detail.aspx )\n\
@@ -216,16 +215,33 @@ async def ready_present(message: types.Message):
 Артикул: [205988401](https://www.wildberries.ru/catalog/205988401/detail.aspx)\n\
 "
 
-    await message.bot.send_video(
+    # Создаем список медиа-группы
+    media_group = [
+        types.InputMediaPhoto(media=InputFile(photo_path), caption='В белом цвете\n\
+https://www.wildberries.ru/catalog/205953343/detail.aspx'),
+        types.InputMediaPhoto(media=InputFile(photo_path2), caption='В васильково-голубом цвете\n\
+https://www.wildberries.ru/catalog/205988401/detail.aspx')
+    ]
+
+    # Отправляем медиа-группу
+    await message.bot.send_media_group(
         chat_id=message.chat.id,
-        caption=text_with_link,
-        video=open(video_path, 'rb'),
+        media=media_group,
+    )
+
+    # Отправляем текстовое сообщение
+    await message.bot.send_message(
+        chat_id=message.chat.id,
+        text=text_with_link,
         parse_mode=types.ParseMode.MARKDOWN
     )
 
 
 async def shocking_price(message: Message):
-    photo = types.InputFile('bot/images/shok_cena.jpg')
+    photo_path1 = 'bot/images/раздел ШОК ЦЕНА 1.png'
+    photo_path2 = 'bot/images/раздел ШОК ЦЕНА 2.png'
+    photo_path3 = 'bot/images/раздел ШОК ЦЕНА 3.png'
+
 
     text_with_link = "Наши выгодные предложения по самым вкусным ценам  \n\
 \n\
@@ -243,7 +259,28 @@ async def shocking_price(message: Message):
 Артикул: [147694388](https://www.wildberries.ru/catalog/147694388/detail.aspx)\n\
 "
 
-    await message.answer_photo(caption=text_with_link, photo=photo, parse_mode=types.ParseMode.MARKDOWN)
+    # Создаем список медиа-группы
+    media_group = [
+        types.InputMediaPhoto(media=InputFile(photo_path1), caption="Комплект топов 2 шт. черный и молочный \n\
+https://www.wildberries.ru/catalog/192010797/detail.aspx"),
+        types.InputMediaPhoto(media=InputFile(photo_path2), caption='Пижама со штанами шелковая\n\
+https://www.wildberries.ru/catalog/147694388/detail.aspx'),
+        types.InputMediaPhoto(media=InputFile(photo_path3), caption='Лонгслив укороченный черный с вырезом на спине\n\
+https://www.wildberries.ru/catalog/149341432/detail.aspx')
+    ]
+
+    # Отправляем медиа-группу
+    await message.bot.send_media_group(
+        chat_id=message.chat.id,
+        media=media_group,
+    )
+
+    # Отправляем текстовое сообщение
+    await message.bot.send_message(
+        chat_id=message.chat.id,
+        text=text_with_link,
+        parse_mode=types.ParseMode.MARKDOWN
+    )
 
 
 def register_users_handlers(dp: Dispatcher) -> None:
