@@ -19,3 +19,12 @@ def get_all_links():
         links.append(doc.get('reels_link'))
 
     return links
+
+
+def get_all_user_ids():
+    data = db['promo_bot'].find({})
+    users_ids = []
+    for doc in data:
+        users_ids.append(doc.get('user_id'))
+
+    return users_ids

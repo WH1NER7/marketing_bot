@@ -1,15 +1,21 @@
+from os import getenv
+
 from aiogram import Dispatcher, Bot, types
-from aiogram.types import Message, CallbackQuery
+from aiogram.types import Message, CallbackQuery, InputFile
 from aiogram.dispatcher import FSMContext
 from aiogram.dispatcher.filters.state import StatesGroup, State
 
-from bot.database.methods.get import check_link
+
+from bot.database.methods.get import check_link, get_all_user_ids
 from bot.database.methods.insert import create_user
 from bot.database.methods.update import upd_link
 from bot.keyboards.inline import markup_lk, markup_competition, markup_link, faq_kb, shop_kb, problems_kb, \
     markup_competition_extra
 from bot.keyboards.reply import start_kb_markup
+
+
 from bot.utils.misc import determine_uniqueness
+
 
 
 class UpdLink(StatesGroup):
@@ -257,8 +263,61 @@ async def shocking_price(message: Message):
     await message.answer_photo(caption=text_with_link, photo=photo, parse_mode=types.ParseMode.MARKDOWN)
 
 
+bot_token = getenv("BOT_TOKEN")
+if not bot_token:
+    exit("Error: no token provided")
+bot = Bot(token=bot_token, parse_mode="HTML")
+
+
+async def send_broadcast_with_media_group(photo_paths, message_text):
+    subscribers = get_all_user_ids()
+
+    photo_path1 = 'bot/images/img_1.png'
+    photo_path2 = 'bot/images/3.jpg'
+    photo_path3 = 'bot/images/3.jpg'
+
+    # Создаем список медиа-группы
+    media_group = [
+            types.InputMediaPhoto(media=InputFile(photo_path1), caption="Комплект топов 2 шт. черный и молочный \n\
+    https://www.wildberries"),
+            types.InputMediaPhoto(media=InputFile(photo_path2), caption='Пижама со штанами шелковая\n\
+    https://www.wildberri'),
+            types.InputMediaPhoto(media=InputFile(photo_path3), caption='Лонгслив укороченный черный с вырезом на спине\n\
+    https://www.wildberri')
+        ]
+
+    text_with_link = "НАША НОВИНКА ❤️‍🔥\n\
+Впервые комплект из натурального ХЛОПКА.\n\
+Приятный на ощупь, обеспечивает комфорт в течении всего дня 🤤"
+
+    for subscriber_id in subscribers:
+        try:
+            # Отправляем медиа-группу каждому подписчику
+            # await bot.send_media_group(chat_id=subscriber_id, media=media_group)
+            # await bot.send_message(chat_id=subscriber_id, text=text_with_link)
+            await bot.send_photo(subscriber_id, photo=types.InputFile(photo_path1), caption=text_with_link,
+                                 parse_mode=types.ParseMode.MARKDOWN)
+        except Exception as e:
+            print(f"Не удалось отправить сообщение подписчику {subscriber_id}: {str(e)}")
+
+
+
+
+# Пример использования функции рассылки с медиа-группой
+async def on_broadcast_media_group_command(message: Message):
+    photo_paths = ['bot/images/shok_cena.jpg', 'bot/images/shok_cena.jpg', 'bot/images/shok_cena.jpg']
+    message_text = 'Текст текст текст текст \n' \
+                   'текст на другой строке'
+    await send_broadcast_with_media_group(photo_paths, message_text)
+
+
+async def broadcast_command(message: Message):
+    await on_broadcast_media_group_command(message)
+
+
 def register_users_handlers(dp: Dispatcher) -> None:
     dp.register_message_handler(start, commands=["start"])
+    dp.register_message_handler(broadcast_command, commands=["broadcast"])
     dp.register_message_handler(service, content_types=['text'], text="Служба заботы")
     # dp.register_message_handler(competition, content_types=['text'], text="Розыгрыш Iphone 15")
     dp.register_message_handler(shocking_price, content_types=['text'], text="“ШОК ЦЕНА”")

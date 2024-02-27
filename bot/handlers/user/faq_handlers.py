@@ -1,7 +1,9 @@
 from aiogram import Dispatcher, Bot
 from aiogram.types import CallbackQuery
 
+
 from bot.keyboards.inline import faq_kb_upd, faq_kb_defect
+
 
 
 async def uhod(callback_query: CallbackQuery):
