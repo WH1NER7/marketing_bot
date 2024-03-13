@@ -276,6 +276,8 @@ async def send_broadcast_with_media_group(photo_paths, message_text):
     photo_path2 = 'bot/images/3.jpg'
     photo_path3 = 'bot/images/3.jpg'
 
+    blocked_users = 0
+    successful_sends = 0
     # Создаем список медиа-группы
     media_group = [
             types.InputMediaPhoto(media=InputFile(photo_path1), caption="Комплект топов 2 шт. черный и молочный \n\
@@ -300,10 +302,13 @@ async def send_broadcast_with_media_group(photo_paths, message_text):
             # await bot.send_message(chat_id=subscriber_id, text=text_with_link)
             await bot.send_photo(subscriber_id, photo=types.InputFile(photo_path1), caption=text_with_link,
                                  parse_mode=types.ParseMode.MARKDOWN)
+            successful_sends += 1
         except Exception as e:
             print(f"Не удалось отправить сообщение подписчику {subscriber_id}: {str(e)}")
+            blocked_users += 1
 
-
+    print(f"Успешно отправлено сообщений: {successful_sends}/{len(subscribers)}")
+    print(f"Заблокировано пользователем: {blocked_users}")
 
 
 # Пример использования функции рассылки с медиа-группой
