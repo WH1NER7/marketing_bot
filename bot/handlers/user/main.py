@@ -272,7 +272,7 @@ bot = Bot(token=bot_token, parse_mode="HTML")
 async def send_broadcast_with_media_group(photo_paths, message_text):
     subscribers = get_all_user_ids()
 
-    photo_path1 = 'bot/images/img_2.png'
+    photo_path1 = 'bot/images/broadcast.jpg'
     photo_path2 = 'bot/images/3.jpg'
     photo_path3 = 'bot/images/3.jpg'
 
@@ -286,12 +286,12 @@ async def send_broadcast_with_media_group(photo_paths, message_text):
     https://www.wildberri')
         ]
 
-    text_with_link = "Расширяем линейку PLUS SIZE ⚡️\n\
-Новый комплект с принтом станет изюминкой вашего вечера ☺️\n\
-Комфорт, сексуальность и приятная цена!\n\
-Доступно к заказу 29.02. ❤️‍🔥\n\
+    text_with_link = "Ощущение легкости и комфорта — то что испытывает каждая девушка в белье MISSYOURKISS 😍\n\
 \n\
-Ссылка на комплект - https://www.wildberries.ru/catalog/203186234/detail.aspx?targetUrl=BP"
+Весенний пудровый цвет комплекта добавит нежности в ваше настроение ☀️\n\
+\n\
+ЗАКАЗАТЬ ПО ССЫЛКЕ \n\
+🔗 https://www.wildberries.ru/catalog/203225154/detail.aspx?targetUrl=MS"
 
     for subscriber_id in subscribers:
         try:
