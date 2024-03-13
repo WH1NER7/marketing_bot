@@ -53,7 +53,7 @@ async def service(message: Message):
 
 async def about_us(message: Message):
     # photo = types.InputFile('bot/images/lif.jpg')
-    video = types.InputFile('bot/images/IMG_9106.MP4')
+    video = types.InputFile('bot/images/IMG_2181.MOV')
 
     await message.answer_video(
         caption=
