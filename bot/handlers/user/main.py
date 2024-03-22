@@ -272,7 +272,7 @@ bot = Bot(token=bot_token, parse_mode="HTML")
 async def send_broadcast_with_media_group(photo_paths, message_text):
     subscribers = get_all_user_ids()
 
-    photo_path1 = 'bot/images/broadcast.jpg'
+    photo_path1 = 'bot/images/broadcast2.png'
     photo_path2 = 'bot/images/3.jpg'
     photo_path3 = 'bot/images/3.jpg'
 
@@ -288,12 +288,17 @@ async def send_broadcast_with_media_group(photo_paths, message_text):
     https://www.wildberri')
         ]
 
-    text_with_link = "Ощущение легкости и комфорта — то что испытывает каждая девушка в белье MISSYOURKISS 😍\n\
+    text_with_link = "Обновляем нижнее белье весной яркими трусиками.\n\
+СТРИНГИ – ДЕРЬЕРЫ С ВЫШИВКОЙ «BAD BARBIE» 💝💁🏼‍♀️💅🏽\n\
+Сочетание розового и белого невероятно красиво и нежно смотрится 😍\n\
+Нежнейшая сеточка с ластовицей из хлопка.\n\
 \n\
-Весенний пудровый цвет комплекта добавит нежности в ваше настроение ☀️\n\
+ЗАКАЗАТЬ ПО ССЫЛКЕ 🔗👇🏽\n\
+https://www.wildberries.ru/catalog/212013759/detail.aspx?targetUrl=MS\n\
 \n\
-ЗАКАЗАТЬ ПО ССЫЛКЕ \n\
-🔗 https://www.wildberries.ru/catalog/203225154/detail.aspx?targetUrl=MS"
+Сочетай вместе с розовым кроп топом 😍👇🏽\n\
+\n\
+https://www.wildberries.ru/catalog/162325139/detail.aspx?targetUrl=MS"
 
     for subscriber_id in subscribers:
         try:
