@@ -272,7 +272,7 @@ bot = Bot(token=bot_token, parse_mode="HTML")
 async def send_broadcast_with_media_group(photo_paths, message_text):
     subscribers = get_all_user_ids()
 
-    photo_path1 = 'bot/images/broadcast3.jpg'
+    photo_path1 = 'bot/images/broadcast4.jpg'
     photo_path2 = 'bot/images/3.jpg'
     photo_path3 = 'bot/images/3.jpg'
 
@@ -288,14 +288,14 @@ async def send_broadcast_with_media_group(photo_paths, message_text):
     https://www.wildberri')
         ]
 
-    text_with_link = "ТАКОГО КРУЖЕВА вы еще не видели!\n\
-Настолько мягкое и приятное к телу🪽☁️\n\
-А косточки на лифе создают легкий пуш-ап эффект без поролона!\n\
-Уже на этой неделе отправим ссылку в ТЕЛЕГРАММ на этот комплект 😍❤️‍🔥\n\
+    text_with_link = "Собери весеннюю капсулу вместе с MISSYOURKISS 🍃🌸\n\
+Яркие кроп–топы очень красиво сочетаются с джинсами.\n\
 \n\
-УЖЕ СЕГОДНЯ В ПРОДАЖЕ 🔗\n\
+Голубой 💙 🔗 [163659738](https://www.wildberries.ru/catalog/163659738/detail.aspx?targetUrl=MS)\n\
 \n\
-https://www.wildberries.ru/catalog/216288937/detail.aspx?targetUrl=MS"
+Розовый 🩷 🔗  [162325139](https://www.wildberries.ru/catalog/162325139/detail.aspx?targetUrl=MS) \n\
+\n\
+Зеленый 💚 🔗 [163661875](https://www.wildberries.ru/catalog/163661875/detail.aspx?targetUrl=MS)"
 
     for subscriber_id in subscribers:
         try:
