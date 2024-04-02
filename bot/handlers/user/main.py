@@ -25,9 +25,8 @@ async def start(message: Message):
     await message.answer(text, reply_markup=keyboard)
 
 
-
 async def service(message: Message):
-    video = types.InputFile('bot/images/раздел СЛУЖБА ЗАБОТЫ.MOV')
+    video = types.InputFile('bot/images/IMG_2181.MOV')
     await message.answer_video(caption=f'Мы тщательно следим за качеством пошива наших изделий. \n\
 И всегда рады твоей обратной связи, чтобы сделать комплекты ещё лучше!🔥  \n\
 Остались вопросы? Найди ответ из предложенных в “FAQ” или свяжись с нами',
@@ -52,10 +51,10 @@ async def service(message: Message):
 
 
 async def about_us(message: Message):
-    # photo = types.InputFile('bot/images/lif.jpg')
-    video = types.InputFile('bot/images/IMG_2181.MOV')
+    photo = types.InputFile('bot/images/о нас.png')
+    # video = types.InputFile('bot/images/IMG_2181.MOV')
 
-    await message.answer_video(
+    await message.answer_photo(
         caption=
 'Домашняя одежда от Naumova.brand - это уют, нежность и комфорт.\n\
 \n\
@@ -63,13 +62,13 @@ async def about_us(message: Message):
 📌 “Та самая пижама из Pinterest” впервые была сшита в 2017 году. \n\n\
 📌 Трендовые модели и расцветки - приоритет бренда, для нас важно, чтобы дома каждая девушка выглядела на все 1000%!\n\n\
 📌 Мы открыли свое производство в 2022 году, чтобы наши изделия выпускались под контролем, а наши клиенты получали качественные домашние комплекты.\n\n\
-📌 За два года на Wildberries одели в пижаму 62 тыс девушек. А это на минуточку все население города Чистополь откуда мы родом.\n\
+📌 За два года на Wildberries одели в пижаму 65 тысяч девушек. А это на минуточку все население города Чистополь откуда мы родом.\n\
 \n\
 [Мы в нельзяграм](https://www.instagram.com/naumovaa.brand?igsh=MTlvNnE2aWF4YXdlbw==) \n\
 \n\
 [Мы на YouTube](https://youtube.com/@Naumovabraand?si=Ae33ChsL25mE-O5e) \n\
 ',
-        video=video,
+        photo=photo,
         # reply_markup=markup_competition,
         parse_mode=types.ParseMode.MARKDOWN)
 

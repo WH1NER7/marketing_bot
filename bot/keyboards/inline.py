@@ -4,7 +4,7 @@ from aiogram.types import ReplyKeyboardRemove, \
 
 markup_lk = InlineKeyboardMarkup(row_width=1)
 inline_btn_1 = InlineKeyboardButton('Часто задаваемые вопросы', callback_data='faq')
-inline_btn_2 = InlineKeyboardButton(text="Помогите мне! У меня проблема", url="https://t.me/missyourkiss_manager_bot")
+inline_btn_2 = InlineKeyboardButton(text="Помогите мне! У меня проблема", url="https://wa.me/79384407170")
 markup_lk.add(inline_btn_1, inline_btn_2)
 
 markup_competition = InlineKeyboardMarkup(row_width=1)
@@ -28,8 +28,8 @@ faq_kb.add(faq_btn_1, faq_btn_2, faq_btn_3, faq_btn_4, faq_btn_5, faq_btn_6)
 
 shop_kb = InlineKeyboardMarkup(row_width=1)
 shop_btn_1 = InlineKeyboardButton('ВБ', url='https://www.wildberries.ru/brands/naumovabrand')
-# shop_btn_2 = InlineKeyboardButton('ОЗОН', url='https://www.ozon.ru/seller/missyourkiss-1043385/products/?miniapp=seller_1043385')
-shop_kb.add(shop_btn_1)
+shop_btn_2 = InlineKeyboardButton('ОЗОН', url='https://ozon.ru/t/Y4AVkDw')
+shop_kb.add(shop_btn_1, shop_btn_2)
 
 
 problems_kb = InlineKeyboardMarkup(row_width=1)
@@ -57,14 +57,14 @@ competition_extra_btn_3 = InlineKeyboardButton('Прочитать оферту'
 markup_competition_extra.add(competition_extra_btn_1, competition_extra_btn_2, competition_extra_btn_3)
 
 faq_kb_upd = InlineKeyboardMarkup(row_width=1)
-faq_kb_btn2 = InlineKeyboardButton(text="Получить гайд", url="https://t.me/missyourkiss_manager_bot")
+faq_kb_btn2 = InlineKeyboardButton(text="Получить гайд", url="https://wa.me/79384407170")
 faq_kb_upd.add(faq_kb_btn2)
 
 faq_kb_defect = InlineKeyboardMarkup(row_width=1)
-faq_kb_defect_btn2 = InlineKeyboardButton(text="Свяжите меня с менеджером", url="https://t.me/missyourkiss_manager_bot")
+faq_kb_defect_btn2 = InlineKeyboardButton(text="Свяжите меня с менеджером", url="https://wa.me/79384407170")
 faq_kb_defect.add(faq_kb_defect_btn2)
 
 problems_kb_add = InlineKeyboardMarkup(row_width=1)
-problems_kb_btn1 = InlineKeyboardButton(text="Свяжите меня с менеджером", url="https://t.me/missyourkiss_manager_bot")
-problems_kb_btn2 = InlineKeyboardButton(text="Получить гайд", url="https://b24-dvx7b9.bitrix24.site/crm_form_ru7u6/")
+problems_kb_btn1 = InlineKeyboardButton(text="Свяжите меня с менеджером", url="https://wa.me/79384407170")
+problems_kb_btn2 = InlineKeyboardButton(text="Получить гайд", url="https://wa.me/79384407170")
 problems_kb_add.add(problems_kb_btn1, problems_kb_btn2)
