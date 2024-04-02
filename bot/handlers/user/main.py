@@ -272,7 +272,7 @@ bot = Bot(token=bot_token, parse_mode="HTML")
 async def send_broadcast_with_media_group(photo_paths, message_text):
     subscribers = get_all_user_ids()
 
-    photo_path1 = 'bot/images/broadcast4.jpg'
+    photo_path1 = 'bot/images/broadcast5.jpg'
     photo_path2 = 'bot/images/3.jpg'
     photo_path3 = 'bot/images/3.jpg'
 
@@ -288,14 +288,15 @@ async def send_broadcast_with_media_group(photo_paths, message_text):
     https://www.wildberri')
         ]
 
-    text_with_link = "Собери весеннюю капсулу вместе с MISSYOURKISS 🍃🌸\n\
-Яркие кроп–топы очень красиво сочетаются с джинсами.\n\
+    text_with_link = "МЫ РАСШИРИЛИ ЛИНЕЙКУ ТРУСИКОВ ДО 4XL ⚡️\n\
 \n\
-Голубой 💙 🔗 [163659738](https://www.wildberries.ru/catalog/163659738/detail.aspx?targetUrl=MS)\n\
+Наши бестселлеры — трусики стринги с интригующей вышивкой «ЦЕЛУЙ» и «ШЛЕПАЙ»\n\
 \n\
-Розовый 🩷 🔗  [162325139](https://www.wildberries.ru/catalog/162325139/detail.aspx?targetUrl=MS) \n\
+Обязательно ознакомьтесь с размерной сеткой в карточке товара\n\
+🔗 https://www.wildberries.ru/catalog/29535553/detail.aspx?targetUrl=MS\n\
 \n\
-Зеленый 💚 🔗 [163661875](https://www.wildberries.ru/catalog/163661875/detail.aspx?targetUrl=MS)"
+🎁 При покупке трусиков\n\
+Вас ждёт приятный комплимент — ажурные или атласные подвязочки из ассортимента нашего магазина😍"
 
     for subscriber_id in subscribers:
         try:
