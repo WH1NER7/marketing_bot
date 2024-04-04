@@ -8,7 +8,7 @@ from aiogram.dispatcher.filters.state import StatesGroup, State
 
 from bot.database.methods.get import check_link, get_all_user_ids
 from bot.database.methods.insert import create_user
-from bot.database.methods.update import upd_link
+from bot.database.methods.update import upd_link, increment_button_counter
 from bot.keyboards.inline import markup_lk, markup_competition, markup_link, faq_kb, shop_kb, problems_kb, \
     markup_competition_extra
 from bot.keyboards.reply import start_kb_markup
@@ -17,12 +17,13 @@ from bot.keyboards.reply import start_kb_markup
 from bot.utils.misc import determine_uniqueness
 
 
-
 class UpdLink(StatesGroup):
     waiting_link = State()
 
 
 async def start(message: Message):
+    increment_button_counter("start")
+
     keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
     button = types.KeyboardButton("Поделиться контактом", request_contact=True)
     keyboard.add(button)
@@ -31,8 +32,9 @@ async def start(message: Message):
     await message.answer(text, reply_markup=keyboard)
 
 
-
 async def service(message: Message):
+    increment_button_counter("service")
+
     video = types.InputFile('bot/images/IMG_6456.MOV')
     await message.answer_video(caption=f'Мы тщательно следим за качеством пошива наших изделий. \n\
 И всегда рады твоей обратной связи, чтобы сделать комплекты ещё лучше!🔥  \n\
@@ -58,7 +60,8 @@ async def service(message: Message):
 
 
 async def about_us(message: Message):
-    # photo = types.InputFile('bot/images/lif.jpg')
+    increment_button_counter("about_us")
+
     video = types.InputFile('bot/images/IMG_9106.MP4')
 
     await message.answer_video(
@@ -203,6 +206,8 @@ async def get_link(message: Message, state: FSMContext):
 
 
 async def our_shop_link(message: Message):
+    increment_button_counter("our_shop_link")
+
     photo = types.InputFile('bot/images/wb_ozon.png')
     text_with_link = "Благодаря размещению на онлайн-площадках с собственной логистикой мы можем предлагать самые приятные цены и доставлять товар в кратчайшие сроки"
 
@@ -210,6 +215,8 @@ async def our_shop_link(message: Message):
 
 
 async def ready_present(message: types.Message):
+    increment_button_counter("ready_present")
+
     video_path = 'bot/images/IMG_9221.MOV'
 
     text_with_link = "Мы обо всем позаботились и собрали подарочные боксы!! 🎁 \n\
@@ -242,6 +249,8 @@ async def ready_present(message: types.Message):
 
 
 async def shocking_price(message: Message):
+    increment_button_counter("shocking_price")
+
     photo = types.InputFile('bot/images/shok_cena.jpg')
 
     text_with_link = "Самые яркие летние комплекты по самым вкусным ценам. Будь яркой каждый день, переходи и выбирай \n\
