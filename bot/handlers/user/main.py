@@ -281,7 +281,7 @@ bot = Bot(token=bot_token, parse_mode="HTML")
 async def send_broadcast_with_media_group(photo_paths, message_text):
     subscribers = get_all_user_ids()
 
-    photo_path1 = 'bot/images/broadcast5.jpg'
+    photo_path1 = 'bot/images/broadcast6.jpg'
     photo_path2 = 'bot/images/3.jpg'
     photo_path3 = 'bot/images/3.jpg'
 
@@ -297,15 +297,13 @@ async def send_broadcast_with_media_group(photo_paths, message_text):
     https://www.wildberri')
         ]
 
-    text_with_link = "МЫ РАСШИРИЛИ ЛИНЕЙКУ ТРУСИКОВ ДО 4XL ⚡️\n\
+    text_with_link = "НОВИНКА «SIREN» 🧜🏽‍♀️🌊 \n\
 \n\
-Наши бестселлеры — трусики стринги с интригующей вышивкой «ЦЕЛУЙ» и «ШЛЕПАЙ»\n\
+Завораживающий цвет нашего комплекта с косточками «БАНДО»\n\
+🔁Обновленная, более красивая высокая посадка. \n\
+Грудь, благодаря косточкам, приобретает естественный ПУШ-АП😍\n\
 \n\
-Обязательно ознакомьтесь с размерной сеткой в карточке товара\n\
-🔗 https://www.wildberries.ru/catalog/29535553/detail.aspx?targetUrl=MS\n\
-\n\
-🎁 При покупке трусиков\n\
-Вас ждёт приятный комплимент — ажурные или атласные подвязочки из ассортимента нашего магазина😍"
+ССЫЛКА 🔗 https://www.wildberries.ru/catalog/200840985/detail.aspx?targetUrl=GP"
 
     for subscriber_id in subscribers:
         try:
