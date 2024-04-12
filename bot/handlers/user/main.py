@@ -281,7 +281,7 @@ bot = Bot(token=bot_token, parse_mode="HTML")
 async def send_broadcast_with_media_group(photo_paths, message_text):
     subscribers = get_all_user_ids()
 
-    photo_path1 = 'bot/images/broadcast6.jpg'
+    photo_path1 = 'bot/images/broadcast7.jpg'
     photo_path2 = 'bot/images/3.jpg'
     photo_path3 = 'bot/images/3.jpg'
 
@@ -297,13 +297,12 @@ async def send_broadcast_with_media_group(photo_paths, message_text):
     https://www.wildberri')
         ]
 
-    text_with_link = "НОВИНКА «SIREN» 🧜🏽‍♀️🌊 \n\
+    text_with_link = "ДОЛГОЖДАННАЯ НОВИНКА PLUS SIZE 😍\n\
 \n\
-Завораживающий цвет нашего комплекта с косточками «БАНДО»\n\
-🔁Обновленная, более красивая высокая посадка. \n\
-Грудь, благодаря косточкам, приобретает естественный ПУШ-АП😍\n\
+Новый благородный красный цвет на каждый день и для особенного случая 😏\n\
 \n\
-ССЫЛКА 🔗 https://www.wildberries.ru/catalog/200840985/detail.aspx?targetUrl=GP"
+Расширенная размерная сетка до 4XL 🔥\n\
+🔗 https://www.wildberries.ru/catalog/216289233/detail.aspx?targetUrl=GP"
 
     for subscriber_id in subscribers:
         try:
