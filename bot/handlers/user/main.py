@@ -281,7 +281,7 @@ bot = Bot(token=bot_token, parse_mode="HTML")
 async def send_broadcast_with_media_group(photo_paths, message_text):
     subscribers = get_all_user_ids()
 
-    photo_path1 = 'bot/images/broadcast7.jpg'
+    photo_path1 = 'bot/images/broadcast8.jpg'
     photo_path2 = 'bot/images/3.jpg'
     photo_path3 = 'bot/images/3.jpg'
 
@@ -297,12 +297,13 @@ async def send_broadcast_with_media_group(photo_paths, message_text):
     https://www.wildberri')
         ]
 
-    text_with_link = "ДОЛГОЖДАННАЯ НОВИНКА PLUS SIZE 😍\n\
+    text_with_link = "Спасибо вам, за то что вы выбираете нас ❤️\n\
+Мы стараемся над качеством, комфортом и красотой каждого комплекта ❤️‍🔥\n\
 \n\
-Новый благородный красный цвет на каждый день и для особенного случая 😏\n\
+Наш каталог\n\
+WB 🔗 missyourkiss.mobz.click/missyourkiss\n\
 \n\
-Расширенная размерная сетка до 4XL 🔥\n\
-🔗 https://www.wildberries.ru/catalog/216289233/detail.aspx?targetUrl=GP"
+OZON🔗 ozon.ru/category/komplekty-belya-zhenskie-31308/missyourkiss-100790902"
 
     for subscriber_id in subscribers:
         try:
