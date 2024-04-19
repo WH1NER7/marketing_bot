@@ -281,7 +281,7 @@ bot = Bot(token=bot_token, parse_mode="HTML")
 async def send_broadcast_with_media_group(photo_paths, message_text):
     subscribers = get_all_user_ids()
 
-    photo_path1 = 'bot/images/broadcast8.jpg'
+    photo_path1 = 'bot/images/broadcast9.jpg'
     photo_path2 = 'bot/images/3.jpg'
     photo_path3 = 'bot/images/3.jpg'
 
@@ -297,13 +297,14 @@ async def send_broadcast_with_media_group(photo_paths, message_text):
     https://www.wildberri')
         ]
 
-    text_with_link = "Спасибо вам, за то что вы выбираете нас ❤️\n\
-Мы стараемся над качеством, комфортом и красотой каждого комплекта ❤️‍🔥\n\
+    text_with_link = "А вы уже подготовились к ЛЕТУ ? ☀️⛱️🧴🕶️\n\
 \n\
-Наш каталог\n\
-WB 🔗 missyourkiss.mobz.click/missyourkiss\n\
+На термометре в Казани +23 🤩\n\
+Стало жарко к выходу купальников из нашей летней коллекции.\n\
 \n\
-OZON🔗 ozon.ru/category/komplekty-belya-zhenskie-31308/missyourkiss-100790902"
+Заказать уже можно по ссылке\n\
+🔗 [Принт «ANIMALS»](https://www.wildberries.ru/catalog/218272630/detail.aspx?targetUrl=GP)\n\
+🔗 [Чёрный](https://www.wildberries.ru/catalog/218272629/detail.aspx?targetUrl=GP)"
 
     for subscriber_id in subscribers:
         try:
