@@ -281,7 +281,7 @@ bot = Bot(token=bot_token, parse_mode="HTML")
 async def send_broadcast_with_media_group(photo_paths, message_text):
     subscribers = get_all_user_ids()
 
-    photo_path1 = 'bot/images/broadcast9.jpg'
+    photo_path1 = 'bot/images/broadcast10.jpg'
     photo_path2 = 'bot/images/3.jpg'
     photo_path3 = 'bot/images/3.jpg'
 
@@ -297,14 +297,13 @@ async def send_broadcast_with_media_group(photo_paths, message_text):
     https://www.wildberri')
         ]
 
-    text_with_link = "А вы уже подготовились к ЛЕТУ ? ☀️⛱️🧴🕶️\n\
+    text_with_link = "Купальники SOLD OUT ⚡️\n\
+Ожидаем новое поступление. А чтобы успеть заказать первыми – включи уведомления 🔔 и добавь товар в лист ожидания 🤩\n\
+🔗 [КУПАЛЬНИК](https://www.wildberries.ru/catalog/218272629/detail.aspx?targetUrl=GP) \n\
 \n\
-На термометре в Казани +23 🤩\n\
-Стало жарко к выходу купальников из нашей летней коллекции.\n\
-\n\
-Заказать уже можно по ссылке\n\
-🔗 [Принт «ANIMALS»](https://www.wildberries.ru/catalog/218272630/detail.aspx?targetUrl=GP)\n\
-🔗 [Чёрный](https://www.wildberries.ru/catalog/218272629/detail.aspx?targetUrl=GP)"
+А чтобы быть защищенной и самой красивой на пляже, надевай кроп топ из сетки☀️\n\
+Он очень круто гармонирует с купальником😍\n\
+🔗 [КРОП–ТОП](https://www.wildberries.ru/catalog/168812299/detail.aspx?targetUrl=MS)"
 
     for subscriber_id in subscribers:
         try:
