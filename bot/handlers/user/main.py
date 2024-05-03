@@ -281,7 +281,7 @@ bot = Bot(token=bot_token, parse_mode="HTML")
 async def send_broadcast_with_media_group(photo_paths, message_text):
     subscribers = get_all_user_ids()
 
-    photo_path1 = 'bot/images/broadcast11.jpg'
+    photo_path1 = 'bot/images/broadcast12.jpg'
     photo_path2 = 'bot/images/3.jpg'
     photo_path3 = 'bot/images/3.jpg'
 
@@ -297,18 +297,11 @@ async def send_broadcast_with_media_group(photo_paths, message_text):
     https://www.wildberri')
         ]
 
-    text_with_link = "СКИДКА ТОЛЬКО 3 ДНЯ ⚡️\n\
+    text_with_link = "ВРЕМЯ ОТПУСКОВ 🏖️\n\
+Легкое и стильное платье из сетки - идеальный выбор для вашего пляжного образа!\n\
 \n\
-Успей приобрести два самых стильных комплекта нижнего белья и кроп топ с максимальной выгодой !\n\
-Черный [комплект](https://www.ozon.ru/product/komplekt-belya-missyourkiss-1124747143/?from_sku=1124747605&from_url=https%253A%252F%252Fwww.ozon.ru%252Fcart&oos_search=false) на высокой посадке 🖤\n\
-Белый [комплект](https://www.ozon.ru/product/komplekt-belya-missyourkiss-916728083/?_bctx=CAQQudc_&asb=FK1O5uoTPZfiOofHxCXVUqamWGb0T58IgOeO%252BAIckzE%253D&asb2=Dbs0ik-4jH7-WoMesxgxCYlNdo8ud8bOHqxuthUjAM7bvW3LSapmLqjZ0WtzR56iI1MybxkEMhhyGCVUDSw7uA&avtc=1&avte=2&avts=1714050312&from_sku=1325044128&from_url=https%253A%252F%252Fwww.ozon.ru%252Fseller%252Fmissyourkiss-1043385%252Fodezhda-obuv-i-aksessuary-7500%252F%253Fminiapp%253Dseller_1043385%2526page%253D4&hs=1&oos_search=false) с трусиками-стрингами и поясом 🎁\n\
-А так же белый [кроп-топ](https://www.ozon.ru/product/krop-top-missyourkiss-1006089334/?from_sku=1006089334&from_url=https%253A%252F%252Fsupplier.indeepa.com%252F&oos_search=false) 🤍 — все по супер цене! \n\
-\n\
-Скидка 11% доступна только 3 дня - пт, сб, вс.\n\
-\n\
-ПРОМОКОД : MSSRK2C62111\n\
-\n\
-Торопись, количество ограничено! ✨"
+Этот наряд сочетает в себе комфорт и элегантность, подчеркивая вашу женственность и создавая неповторимый образ. А так же служит защитой от солнца. ☀️\n\
+🔗 [ПЛЯЖНОЕ ПЛАТЬЕ](https://www.wildberries.ru/catalog/226609837/detail.aspx?targetUrl=MS)"
 
     for subscriber_id in subscribers:
         try:
