@@ -21,15 +21,15 @@ class UpdLink(StatesGroup):
     waiting_link = State()
 
 
-async def start(message: Message):
-    increment_button_counter("start")
-
-    keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
-    button = types.KeyboardButton("Поделиться контактом", request_contact=True)
-    keyboard.add(button)
-
-    text = "Для продолжения регистрации, поделитесь своим контактным номером."
-    await message.answer(text, reply_markup=keyboard)
+# async def start(message: Message):
+#     increment_button_counter("start")
+#
+#     keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
+#     button = types.KeyboardButton("Поделиться контактом", request_contact=True)
+#     keyboard.add(button)
+#
+#     text = "Для продолжения регистрации, поделитесь своим контактным номером."
+#     await message.answer(text, reply_markup=keyboard)
 
 
 async def service(message: Message):
@@ -44,34 +44,19 @@ async def service(message: Message):
             width=960, height=1460)
 
 
-# async def competition(message: Message):
-#     video = types.InputFile('bot/images/IMG_6397.MOV')
-#     await message.answer_video(caption=f'Мы рады приветствовать тебя на старте нашего конкурса от бренда белья "MissYourKiss" 💋\n\
-#     \n\
-#     Здесь тебя ждет незабываемое путешествие, полное элегантного белья, творческих идей, и, конечно же, волшебства! \n\
-#     \n\
-#     Снимай рилсы в нашем белье и участвуй в конкурсе и получи шанс выиграть розовый iPhone 15! 🔥🔥\n\
-#     \n\
-#     Но это еще не все…\n\
-#     🎁 еженедельно, в рамках конкурса, мы разыграем по комплекту нижнего белья для обладательницы лучшего рилса недели!\n\
-#     \n\
-#     Напоминаем, что конкурс будет длиться до конца декабря. Поэтому каждую неделю у тебя есть шанс выиграть приз!',
-#                                video=video, reply_markup=markup_competition, width=960, height=1664)
-
-
 async def about_us(message: Message):
     increment_button_counter("about_us")
 
-    video = types.InputFile('bot/images/IMG_9106.MP4')
+    video = types.InputFile('bot/images/letnee_video.mp4')
 
     await message.answer_video(
         caption=
-'Благодарим за выбор нашего бренда, мы производим комплекты в Казани с любовью и заботой о каждой \n\
-\n\
-Белье от miss your kiss - это\n\
-- удобство и комфорт\n\
-- сексуальность в каждом движении\n\
-- быть готовой к особому случаю в любой момент\n\
+'Искренне благодарим Вас за выбор нашего бренда.\n\
+MissYourKiss\n\
+- это нижнее белье, аксессуары и купальники\n\
+- это российское производство\n\
+- это сексуальность и чувственность в каждом движении\n\
+- это быть готовой к особому случаю в любой момент\n\
 \n\
 [Мы в нельзяграм](https://instagram.com/missyourkiss.brand?igshid=MzRlODBiNWFlZA==) \n\
 \n\
@@ -90,28 +75,22 @@ async def faq_info(callback_query: CallbackQuery):
     await bot.send_message(user_id, "Основые вопросы и ответы к ним\n", reply_markup=faq_kb)
 
 
-async def get_contact(message: Message):
-    contact = message.contact
-    if contact:
-        phone_number = contact.phone_number
-        user_id = contact.user_id
+async def start(message: Message):
+    user_id = message.from_user.id
 
-        # await message.answer(text=f"Вы поделились контактом с номером {phone_number}")
-        user_real_name = message.from_user.first_name
-        user_second_name = message.from_user.last_name
-        user_link_nice = message.from_user.username
+    # await message.answer(text=f"Вы поделились контактом с номером {phone_number}")
+    user_real_name = message.from_user.first_name
+    user_second_name = message.from_user.last_name
+    user_link_nice = message.from_user.username
 
-        user_id = message.from_user.id
-        create_user(user_real_name, user_second_name, user_id, user_link_nice, phone_number)
+    user_id = message.from_user.id
+    create_user(user_real_name, user_second_name, user_id, user_link_nice)
 
-        photo = types.InputFile('bot/images/для ТГ.jpg')
-        video = types.InputFile('bot/images/IMG_6397.MOV')
-        await message.answer_photo(
-            caption=f'Привет, милая! \nНа связи твой любимый бренд нижнего белья MissYourKiss 💋 \nРады приветствовать тебя в нашем канале. Здесь ты самой первой будешь получать новости о свежих конкурсах, акциях и новинках😍',
-            reply_markup=start_kb_markup, photo=photo)
-        # Добавьте здесь код, который вы хотите выполнить при поделиться контактом
-    else:
-        await message.answer(text="Пользователь не поделился контактом или произошла ошибка")
+    photo = types.InputFile('bot/images/для ТГ.jpg')
+
+    await message.answer_photo(
+        caption=f'Привет, милая! \nНа связи твой любимый бренд нижнего белья MissYourKiss 💋 \nРады приветствовать тебя в нашем канале. Здесь ты самой первой будешь получать новости о свежих конкурсах, акциях и новинках😍',
+        reply_markup=start_kb_markup, photo=photo)
 
 
 async def get_gift(callback_query: CallbackQuery):
@@ -251,23 +230,22 @@ async def ready_present(message: types.Message):
 async def shocking_price(message: Message):
     increment_button_counter("shocking_price")
 
-    photo = types.InputFile('bot/images/shok_cena.jpg')
+    photo = types.InputFile('bot/images/kupalnik.jpg')
 
     text_with_link = "Самые яркие летние комплекты по самым вкусным ценам. Будь яркой каждый день, переходи и выбирай \n\
 \n\
 \n\
-Зеленое яблоко\n\
-Артикул: [151189081 ](https://www.wildberries.ru/catalog/151189081/detail.aspx)\n\
+Наш TOP бикини купальник TIGER 🔥\n\
+Артикул: [218272630](https://www.wildberries.ru/catalog/218272630/detail.aspx?targetUrlBP)\n\
 \n\
-Небесно голубой\n\
-Артикул: [150623767](https://www.wildberries.ru/catalog/150623767/detail.aspx?targetUrl=EX)\n\
+Черный бикини купальник\n\
+Артикул: [218272629](https://www.wildberries.ru/catalog/218272629/detail.aspx?targetUrlBP)\n\
 \n\
-Трендовый розовый неон с 2мя трусиками\n\
-Артикул: [177991386](https://www.wildberries.ru/catalog/177991386/detail.aspx)\n\
+Туника пляжная\n\
+Артикул: [226609836](https://www.wildberries.ru/catalog/226609836/detail.aspx?targetUrl=BP)\n\
 \n\
-Базовый черный с 2мя трусиками\n\
-Артикул: [171994371](https://www.wildberries.ru/catalog/171994371/detail.aspx?targetUrl=EX)\n\
-"
+Кроп топ пляжный\n\
+Артикул: [158417968](https://www.wildberries.ru/catalog/158417968/detail.aspx?targetUrl=BP)"
 
     await message.answer_photo(caption=text_with_link, photo=photo, parse_mode=types.ParseMode.MARKDOWN)
 
@@ -281,7 +259,7 @@ bot = Bot(token=bot_token, parse_mode="HTML")
 async def send_broadcast_with_media_group(photo_paths, message_text):
     subscribers = get_all_user_ids()
 
-    photo_path1 = 'bot/images/broadcast12.jpg'
+    photo_path1 = 'bot/images/broadcast13.jpg'
     photo_path2 = 'bot/images/3.jpg'
     photo_path3 = 'bot/images/3.jpg'
 
@@ -297,11 +275,13 @@ async def send_broadcast_with_media_group(photo_paths, message_text):
     https://www.wildberri')
         ]
 
-    text_with_link = "ВРЕМЯ ОТПУСКОВ 🏖️\n\
-Легкое и стильное платье из сетки - идеальный выбор для вашего пляжного образа!\n\
+    text_with_link = "ГОТОВИМСЯ К ЛЕТУ С MISS YOUR KISS 💋 \n\
 \n\
-Этот наряд сочетает в себе комфорт и элегантность, подчеркивая вашу женственность и создавая неповторимый образ. А так же служит защитой от солнца. ☀️\n\
-🔗 [ПЛЯЖНОЕ ПЛАТЬЕ](https://www.wildberries.ru/catalog/226609837/detail.aspx?targetUrl=MS)"
+Сочетайте купальник с кроп–топами из сетки в разных цветах , чтобы защитить себя от солнца ☀️\n\
+\n\
+🔗 [КУПАЛЬНИК](https://www.wildberries.ru/catalog/218272629/detail.aspx?targetUrl=MS) \n\
+🔗 [КРОП ТОП «ANIMALS»](https://www.wildberries.ru/catalog/168812299/detail.aspx?targetUrl=MS)\n\
+🔗 [КРОП ТОП ЧЕРНЫЙ](https://www.wildberries.ru/catalog/158417968/detail.aspx?targetUrl=MS)"
 
     for subscriber_id in subscribers:
         try:
@@ -309,7 +289,7 @@ async def send_broadcast_with_media_group(photo_paths, message_text):
             # await bot.send_media_group(chat_id=subscriber_id, media=media_group)
             # await bot.send_message(chat_id=subscriber_id, text=text_with_link)
             await bot.send_photo(subscriber_id, photo=types.InputFile(photo_path1), caption=text_with_link,
-                                 parse_mode=types.ParseMode.MARKDOWN)
+                                 parse_mode=types.ParseMode.MARKDOWN, reply_markup=start_kb_markup)
             successful_sends += 1
         except Exception as e:
             print(f"Не удалось отправить сообщение подписчику {subscriber_id}: {str(e)}")
@@ -331,17 +311,22 @@ async def broadcast_command(message: Message):
     await on_broadcast_media_group_command(message)
 
 
+async def send_file(callback_query: CallbackQuery):
+    # Загрузка файла на сервер или получение его пути
+    file_path = 'bot/images/Reels на миллион.pdf'  # Укажите путь к вашему файлу
+
+    await callback_query.message.answer_document(open(file_path, "rb"))
+
+
 def register_users_handlers(dp: Dispatcher) -> None:
     dp.register_message_handler(start, commands=["start"])
     dp.register_message_handler(broadcast_command, commands=["broadcast"])
     dp.register_message_handler(service, content_types=['text'], text="Служба заботы")
-    # dp.register_message_handler(competition, content_types=['text'], text="Розыгрыш Iphone 15")
-    dp.register_message_handler(shocking_price, content_types=['text'], text="“ШОК ЦЕНА”")
+
+    dp.register_message_handler(shocking_price, content_types=['text'], text="Пляжная коллекция")
     dp.register_message_handler(ready_present, content_types=['text'], text="Готовый подарок")
     dp.register_message_handler(our_shop_link, content_types=['text'], text="Каталог бренда")
     dp.register_message_handler(about_us, content_types=['text'], text="О нас")
-
-    dp.register_message_handler(get_contact, content_types=types.ContentType.CONTACT)
 
     dp.register_callback_query_handler(faq_info, lambda c: c.data == 'faq')
     dp.register_callback_query_handler(get_gift, lambda c: c.data == 'get_gift')
@@ -351,5 +336,6 @@ def register_users_handlers(dp: Dispatcher) -> None:
     dp.register_callback_query_handler(competition_full_info, lambda c: c.data == 'competition_full_info')
     dp.register_callback_query_handler(wa_link, lambda c: c.data == 'wa_link')
     dp.register_callback_query_handler(competition_link, lambda c: c.data == 'reels_link')
+    dp.register_callback_query_handler(send_file, lambda c: c.data == 'get_a_guide')
 
     dp.register_message_handler(get_link, state=UpdLink.waiting_link)
