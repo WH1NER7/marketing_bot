@@ -76,6 +76,8 @@ async def faq_info(callback_query: CallbackQuery):
 
 
 async def start(message: Message):
+    increment_button_counter("start")
+
     user_id = message.from_user.id
 
     # await message.answer(text=f"Вы поделились контактом с номером {phone_number}")
