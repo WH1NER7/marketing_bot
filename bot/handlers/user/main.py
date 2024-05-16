@@ -7,7 +7,7 @@ from aiogram.dispatcher.filters.state import StatesGroup, State
 
 
 from bot.database.methods.get import check_link, get_all_user_ids
-from bot.database.methods.insert import create_user
+from bot.database.methods.insert import create_user, insert_broadcast_stats
 from bot.database.methods.update import upd_link, increment_button_counter
 from bot.keyboards.inline import markup_lk, markup_competition, markup_link, faq_kb, shop_kb, problems_kb, \
     markup_competition_extra
@@ -295,8 +295,7 @@ async def send_broadcast_with_media_group(photo_paths, message_text):
             print(f"Не удалось отправить сообщение подписчику {subscriber_id}: {str(e)}")
             blocked_users += 1
 
-    print(f"Успешно отправлено сообщений: {successful_sends}/{len(subscribers)}")
-    print(f"Заблокировано пользователем: {blocked_users}")
+    insert_broadcast_stats(blocked_users, successful_sends)
 
 
 # Пример использования функции рассылки с медиа-группой
