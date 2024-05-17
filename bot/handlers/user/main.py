@@ -309,7 +309,11 @@ async def on_broadcast_media_group_command(message: Message):
 
 
 async def broadcast_command(message: Message):
-    await on_broadcast_media_group_command(message)
+    user_id = message.from_user.id
+    if user_id == 615742233:
+        await on_broadcast_media_group_command(message)
+    else:
+        await message.answer(text='Вы не являетесь администратором')
 
 
 async def send_file(callback_query: CallbackQuery):
