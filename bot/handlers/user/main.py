@@ -277,11 +277,13 @@ async def send_broadcast_with_media_group(photo_paths, message_text):
     https://www.wildberri')
         ]
 
-    text_with_link = "НОВИНКА💚🤩\n\
-Пляжное платье появилось в ярком цвете зеленый неон ⚡️\n\
+    text_with_link = "Летняя коллекция ПОПОЛНЯЕТСЯ 🤩\n\
 \n\
-Будь в безопасности от солнца и в центре внимания одновременно 😍\n\
-🔗 [ПЛЯЖНОЕ ПЛАТЬЕ](https://www.wildberries.ru/catalog/226609836/detail.aspx?targetUrl=MS)"
+Брюки из легкой, приятной к телу сетки в культовом принте 🐅\n\
+\n\
+🔗 [БРЮКИ НА WB](https://www.wildberries.ru/catalog/228738081/detail.aspx?targetUrl=MS)\n\
+Сочетайте с нашим кроп-топом \n\
+🔗 [КРОП–ТОП НА WB](https://www.wildberries.ru/catalog/168812299/detail.aspx?targetUrl=MS)"
 
     for subscriber_id in subscribers:
         try:
