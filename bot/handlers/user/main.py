@@ -261,7 +261,7 @@ bot = Bot(token=bot_token, parse_mode="HTML")
 async def send_broadcast_with_media_group(photo_paths, message_text):
     subscribers = get_all_user_ids()
 
-    photo_path1 = 'bot/images/broadcast1.png'
+    photo_path1 = 'bot/images/broadcast1.MP4'
     photo_path2 = 'bot/images/3.jpg'
     photo_path3 = 'bot/images/3.jpg'
 
@@ -277,20 +277,20 @@ async def send_broadcast_with_media_group(photo_paths, message_text):
     https://www.wildberri')
         ]
 
-    text_with_link = "ВРЕМЯ КРАСИВОГО ЗАГАРА 😍\n\
+    text_with_link = "Прекрасный свадебный сезон начался ! 💍🩵\n\
 \n\
-А значит белые вещи по-особенному красиво заиграют для вас!\n\
-Выбирайте белый цвет на повседневную жизнь, на отдых или свадьбу 💍\n\
+Выбери универсальное бежевое белье для своего особенного дня.\n\
+Или белоснежный комплект, чтобы почувствовать себя настоящей принцессой 😍\n\
 \n\
-🔗 [КОМПЛЕКТ БЕЛЬЯ](https://www.wildberries.ru/catalog/70219741/detail.aspx?targetUrl=MS)\n\
-🔗 [КРОП - ТОП](https://www.wildberries.ru/catalog/159914464/detail.aspx?targetUrl=MS)"
+🔗 [БЕЖЕВЫЙ КОМПЛЕКТ](https://www.wildberries.ru/catalog/132673611/detail.aspx?targetUrl=MS)\n\
+🔗 [БЕЛЫЙ КОМПЛЕКТ](https://www.wildberries.ru/catalog/111821934/detail.aspx?targetUrl=MS)"
 
     for subscriber_id in subscribers:
         try:
             # Отправляем медиа-группу каждому подписчику
             # await bot.send_media_group(chat_id=subscriber_id, media=media_group)
             # await bot.send_message(chat_id=subscriber_id, text=text_with_link)
-            await bot.send_photo(subscriber_id, photo=types.InputFile(photo_path1), caption=text_with_link,
+            await bot.send_video(subscriber_id, video=types.InputFile(photo_path1), caption=text_with_link,
                                  parse_mode=types.ParseMode.MARKDOWN, reply_markup=start_kb_markup)
             successful_sends += 1
         except Exception as e:
