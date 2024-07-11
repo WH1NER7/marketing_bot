@@ -1,3 +1,4 @@
+from datetime import datetime
 from os import getenv
 
 from aiogram import Dispatcher, Bot, types
@@ -7,7 +8,8 @@ from aiogram.dispatcher.filters.state import StatesGroup, State
 
 
 from bot.database.methods.get import check_link, get_all_user_ids
-from bot.database.methods.insert import create_user, insert_broadcast_stats
+from bot.database.methods.insert import create_user, insert_broadcast_stats, insert_poll_response, \
+    update_poll_statistics, insert_quiz_stats
 from bot.database.methods.update import upd_link, increment_button_counter
 from bot.keyboards.inline import markup_lk, markup_competition, markup_link, faq_kb, shop_kb, problems_kb, \
     markup_competition_extra
@@ -322,10 +324,112 @@ async def send_file(callback_query: CallbackQuery):
     await callback_query.message.answer_document(open(file_path, "rb"))
 
 
+# Обработчик команды /quiz для отправки опроса
+# Функция для отправки опроса всем подписчикам
+# Функция для отправки опроса всем подписчикам
+# Функция для отправки опроса всем подписчикам
+async def send_quiz(message: types.Message):
+    question = "Привет, дорогая! На улице невыносимая жара и мы решили узнать готова ли ты плескаться и загорать? 👙"
+    options = ["Да", "Нет"]
+    subscribers = get_all_user_ids()
+    photo_path = 'bot/images/img_3.png'
+
+    sent_messages = 0
+    successful_sends = 0
+    failed_sends = 0
+
+    for subscriber_id in subscribers:
+        try:
+            # Отправка фото
+            await bot.send_photo(
+                chat_id=subscriber_id,
+                photo=types.InputFile(photo_path),
+                caption=""
+            )
+            # Отправка опроса
+            await bot.send_poll(
+                chat_id=subscriber_id,
+                question=question,
+                options=options,
+                is_anonymous=False,
+                type='quiz',
+                correct_option_id=0  # Индекс правильного ответа, если это quiz
+            )
+            successful_sends += 1
+        except Exception as e:
+            print(f"Не удалось отправить сообщение подписчику {subscriber_id}: {str(e)}")
+            failed_sends += 1
+        finally:
+            sent_messages += 1
+
+    # Сохранение данных рассылки в MongoDB
+    insert_quiz_stats(sent_messages, successful_sends, failed_sends)
+
+    # Отправка сообщения с итоговой статистикой
+    await message.reply(f"Рассылка завершена. Успешно отправлено: {successful_sends}, Не удалось отправить: {failed_sends} из {sent_messages}.")
+
+# Обработчик ответов на опрос
+
+async def handle_poll_answer(poll_answer: types.PollAnswer):
+    user_id = poll_answer.user.id
+    answer_ids = poll_answer.option_ids
+
+    if 0 in answer_ids:
+        answer = "Да"
+        await bot.send_message(
+            user_id,
+            "Супер! Большая часть лета еще впереди, проведи эти дни ярко и весело❤️\n\n"
+            "Наша летняя коллекция поможет тебе в этом:\n\n"
+            "Наш TOP бикини купальник TIGER 🔥\n"
+            "Артикул: [218272630](https://www.wildberries.ru/catalog/218272630/detail.aspx?targetUrl=MS)\n\n"
+            "Черный бикини купальник\n"
+            "Артикул: [218272629](https://www.wildberries.ru/catalog/218272629/detail.aspx?targetUrl=MS)\n\n"
+            "Туника пляжная\n"
+            "Артикул: [226609837](https://www.wildberries.ru/catalog/226609837/detail.aspx?targetUrl=MS)\n\n"
+            "Кроп топ пляжный\n"
+            "Артикул: [168812229](https://www.wildberries.ru/catalog/168812299/detail.aspx?targetUrl=MS)",
+            parse_mode=types.ParseMode.MARKDOWN
+        )
+    else:
+        answer = "Нет"
+        await bot.send_message(
+            user_id,
+            "Тогда самое время выбрать то, в чем будешь притягивать восхищенные взгляды на пляже😍\n\n"
+            "Наш TOP бикини купальник TIGER 🔥\n"
+            "Артикул: [218272630](https://www.wildberries.ru/catalog/218272630/detail.aspx?targetUrl=MS)\n\n"
+            "Черный бикини купальник\n"
+            "Артикул: [218272629](https://www.wildberries.ru/catalog/218272629/detail.aspx?targetUrl=MS)\n\n"
+            "Туника пляжная\n"
+            "Артикул: [226609837](https://www.wildberries.ru/catalog/226609837/detail.aspx?targetUrl=MS)\n\n"
+            "Кроп топ пляжный\n"
+            "Артикул: [168812229](https://www.wildberries.ru/catalog/168812299/detail.aspx?targetUrl=MS)",
+            parse_mode=types.ParseMode.MARKDOWN
+        )
+
+    # Сохранение ответа в MongoDB
+    insert_poll_response(user_id, poll_answer.poll_id, answer)
+
+    # Обновление статистики
+    poll_responses_yes, poll_responses_no = update_poll_statistics()
+
+    # Отправка статистики администратору (пример)
+    admin_id = 615742233  # Замените на ID администратора
+    await bot.send_message(
+        admin_id,
+        f"Обновленная статистика опроса:\nДа: {poll_responses_yes}\nНет: {poll_responses_no}",
+        parse_mode=types.ParseMode.MARKDOWN
+    )
+
+
+
+
 def register_users_handlers(dp: Dispatcher) -> None:
     dp.register_message_handler(start, commands=["start"])
     dp.register_message_handler(broadcast_command, commands=["broadcast"])
     dp.register_message_handler(service, content_types=['text'], text="Служба заботы")
+
+    dp.register_message_handler(send_quiz, commands=["quiz"])
+    dp.register_poll_answer_handler(handle_poll_answer)
 
     dp.register_message_handler(shocking_price, content_types=['text'], text="Пляжная коллекция")
     dp.register_message_handler(ready_present, content_types=['text'], text="Готовый подарок")
