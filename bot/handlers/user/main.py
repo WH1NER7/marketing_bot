@@ -263,7 +263,7 @@ bot = Bot(token=bot_token, parse_mode="HTML")
 async def send_broadcast_with_media_group(photo_paths, message_text):
     subscribers = get_all_user_ids()
 
-    photo_path1 = 'bot/images/broadcast1.jpg'
+    photo_path1 = 'bot/images/img_4.png'
     photo_path2 = 'bot/images/3.jpg'
     photo_path3 = 'bot/images/3.jpg'
 
@@ -279,12 +279,8 @@ async def send_broadcast_with_media_group(photo_paths, message_text):
     https://www.wildberri')
         ]
 
-    text_with_link = "УНИВЕРСАЛЬНЫЙ КОМПЛЕКТ\n\
-в цвете капучино, который вуалью растворяется на коже 😍\n\
-\n\
-Интересный акцент на принте «мушка» идеально впишется под любую одежду будь то летний сарафан, строгий костюм или свадебное платье 🤍💍\n\
-\n\
-🔗 [КОМПЛЕКТ «КАПУЧИНО»](https://www.wildberries.ru/catalog/145116957/detail.aspx?targetUrl=MS)"
+    text_with_link = "Привет, красотка!\n\
+Мы лишь решили пожелать тебе ярких выходных и напомнить о том, что ты прекрасна❤️"
 
     for subscriber_id in subscribers:
         try:
