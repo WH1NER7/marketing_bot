@@ -263,7 +263,7 @@ bot = Bot(token=bot_token, parse_mode="HTML")
 async def send_broadcast_with_media_group(photo_paths, message_text):
     subscribers = get_all_user_ids()
 
-    photo_path1 = 'bot/images/img3.jpg'
+    photo_path1 = 'bot/images/img_5.png'
     photo_path2 = 'bot/images/3.jpg'
     photo_path3 = 'bot/images/3.jpg'
 
@@ -279,18 +279,17 @@ async def send_broadcast_with_media_group(photo_paths, message_text):
     https://www.wildberri')
         ]
 
-    text_with_link = "Привет, дорогая!\n\
+    text_with_link = "Не забывай о том, что может сделать тебя счастливой 🫶🏻\n\
 \n\
-В эти дождливые дни хочется согреться и надеть, что-то потеплее☺️\n\
+Одни из таких вещей:\n\
 \n\
-Ты наверняка уже присматриваешь, как стильно утеплиться в такую погоду?\n\
+Нежный комплект белья 🤍\n\
+Артикул: [151158938](https://www.wildberries.ru/catalog/151158938/detail.aspx?targetUrl=MS)\n\
 \n\
-И у нас есть решение - наши классные боди, которые представлены в двух цветах:\n\
+Классный купальник 😍\n\
+Артикул: [218272630](https://www.wildberries.ru/catalog/218272630/detail.aspx?targetUrl=MS)\n\
 \n\
-Черное🖤\n\
-Артикул: [219027537](https://www.wildberries.ru/catalog/219027537/detail.aspx?targetUrl=MS)\n\
-\n\
-Сиреневое💜 \n\
+Яркое боди 💙\n\
 Артикул: [230958311](https://www.wildberries.ru/catalog/230958311/detail.aspx?targetUrl=MS)"
 
     for subscriber_id in subscribers:
