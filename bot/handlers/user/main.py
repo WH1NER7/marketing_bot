@@ -250,6 +250,7 @@ https://www.wildberries.ru/catalog/205988401/detail.aspx')
     )
 
 
+
 async def shocking_price(message: Message):
     photo_path1 = 'bot/images/раздел ШОК ЦЕНА 1.png'
     photo_path2 = 'bot/images/раздел ШОК ЦЕНА 2.png'
