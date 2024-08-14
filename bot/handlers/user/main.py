@@ -103,7 +103,7 @@ async def get_contact(message: Message):
         user_id = message.from_user.id
         create_user(user_real_name, user_second_name, user_id, user_link_nice, phone_number)
 
-        photo = types.InputFile('bot/images/Start_Naumova.png')
+        photo = types.InputFile('bot/images/1-02.jpg')
         await message.answer_photo(
             caption=f'Привет, на связи самый уютный бренд домашней одежды Naumova.brand \n\nРады приветствовать тебя в нашем канале. \n\nЗдесь ты самой первой будешь получать новости о свежих конкурсах, акциях и новинках😍',
             reply_markup=start_kb_markup, photo=photo)

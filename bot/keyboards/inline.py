@@ -4,7 +4,7 @@ from aiogram.types import ReplyKeyboardRemove, \
 
 markup_lk = InlineKeyboardMarkup(row_width=1)
 inline_btn_1 = InlineKeyboardButton('Часто задаваемые вопросы', callback_data='faq')
-inline_btn_2 = InlineKeyboardButton(text="Помогите мне! У меня проблема", url="https://wa.me/79384407170")
+inline_btn_2 = InlineKeyboardButton(text="Помогите мне! У меня проблема", url="https://wa.me/79188045516")
 markup_lk.add(inline_btn_1, inline_btn_2)
 
 markup_competition = InlineKeyboardMarkup(row_width=1)
