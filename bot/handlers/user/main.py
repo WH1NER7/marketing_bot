@@ -263,7 +263,7 @@ bot = Bot(token=bot_token, parse_mode="HTML")
 async def send_broadcast_with_media_group(photo_paths, message_text):
     subscribers = get_all_user_ids()
 
-    photo_path1 = 'bot/images/broadcast777.jpg'
+    photo_path1 = 'bot/images/img_6.png'
     photo_path2 = 'bot/images/3.jpg'
     photo_path3 = 'bot/images/3.jpg'
 
@@ -279,24 +279,13 @@ async def send_broadcast_with_media_group(photo_paths, message_text):
     https://www.wildberri')
         ]
 
-    text_with_link = "Помни, что человек, которого ты должна любить безусловно и всегда - это ты❤️\n\
+    text_with_link = "Чувствовать себя сексуально и уверенно лучше всего поможет наше чувственное белье 😍\n\
 \n\
-А с нашей летней коллекцией шансы влюбить в себя окружающих равны 100😍\n\
+Нежный пудровый комплект:\n\
+Артикул: [203225154](https://www.wildberries.ru/catalog/203225154/detail.aspx?targetUrl=EX)\n\
 \n\
-Купальник tiger\n\
-Артикул: [218272630](https://www.wildberries.ru/catalog/218272630/detail.aspx?targetUrl=MS)\n\
-\n\
-Черный купальник\n\
-Артикул: [218272629](https://www.wildberries.ru/catalog/218272629/detail.aspx?targetUrl=MS)\n\
-\n\
-Классные кроп топы:\n\
-Артикул: [158417968](https://www.wildberries.ru/catalog/158417968/detail.aspx?targetUrl=MS)\n\
-\n\
-Сетчатые брюки:\n\
-Артикул: [228738081](https://www.wildberries.ru/catalog/228738081/detail.aspx?targetUrl=MS)\n\
-\n\
-Бесподобные туники:\n\
-Артикул: [226609836](https://www.wildberries.ru/catalog/226609836/detail.aspx?targetUrl=MS)"
+Интригующий черный комплект:\n\
+Артикул: [201400203](https://www.wildberries.ru/catalog/201400203/detail.aspx?targetUrl=EX)"
 
     for subscriber_id in subscribers:
         try:
