@@ -263,7 +263,7 @@ bot = Bot(token=bot_token, parse_mode="HTML")
 async def send_broadcast_with_media_group(photo_paths, message_text):
     subscribers = get_all_user_ids()
 
-    photo_path1 = 'bot/images/img_7.png'
+    photo_path1 = 'bot/images/img_8.png'
     photo_path2 = 'bot/images/3.jpg'
     photo_path3 = 'bot/images/3.jpg'
 
@@ -279,13 +279,17 @@ async def send_broadcast_with_media_group(photo_paths, message_text):
     https://www.wildberri')
         ]
 
-    text_with_link = "Пора утепляться к осени🍁\n\
+    text_with_link = "Привет, дорогая❤️\n\
 \n\
-И у нас для этого есть идеальный комплект из хлопка☁️\n\
+У тебя еще нет нашего удобного боди, которым можно интересно дополнить любой образ?\n\
 \n\
-Мягкий, уютный и очень комфортный, отлично подходит для для дома и сна❤️\n\
+Тогда скорее кликай по ссылке, пока они есть в наличие:\n\
 \n\
-Артикул: [203236385](https://www.wildberries.ru/catalog/203236385/detail.aspx?targetUrl=MS&size=327452829)"
+Черный боди 🖤\n\
+Артикул: [219027537](https://www.wildberries.ru/catalog/219027537/detail.aspx?targetUrl=MS)\n\
+\n\
+Сиреневый боди 💙\n\
+Артикул: [230958311](https://www.wildberries.ru/catalog/230958311/detail.aspx?targetUrl=MS)"
 
     for subscriber_id in subscribers:
         try:
