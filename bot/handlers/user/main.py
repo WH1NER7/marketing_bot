@@ -278,7 +278,7 @@ async def send_broadcast_with_media_group(photo_paths, message_text):
             types.InputMediaPhoto(media=InputFile(photo_path3), caption='Лонгслив укороченный черный с вырезом на спине\n\
     https://www.wildberri')
         ]
-
+#
     text_with_link = "Совсем скоро мы порадуем вас невероятными новинками✨\n\
 \n\
 А пока что напомним вам о комплектах, которые уже полюбились многим девушкам:\n\
