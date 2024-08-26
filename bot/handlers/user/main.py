@@ -263,7 +263,7 @@ bot = Bot(token=bot_token, parse_mode="HTML")
 async def send_broadcast_with_media_group(photo_paths, message_text):
     subscribers = get_all_user_ids()
 
-    photo_path1 = 'bot/images/img_6.png'
+    photo_path1 = 'bot/images/img_7.png'
     photo_path2 = 'bot/images/3.jpg'
     photo_path3 = 'bot/images/3.jpg'
 
@@ -279,13 +279,18 @@ async def send_broadcast_with_media_group(photo_paths, message_text):
     https://www.wildberri')
         ]
 
-    text_with_link = "Чувствовать себя сексуально и уверенно лучше всего поможет наше чувственное белье 😍\n\
+    text_with_link = "Совсем скоро мы порадуем вас невероятными новинками✨\n\
 \n\
-Нежный пудровый комплект:\n\
-Артикул: [203225154](https://www.wildberries.ru/catalog/203225154/detail.aspx?targetUrl=EX)\n\
+А пока что напомним вам о комплектах, которые уже полюбились многим девушкам:\n\
 \n\
-Интригующий черный комплект:\n\
-Артикул: [201400203](https://www.wildberries.ru/catalog/201400203/detail.aspx?targetUrl=EX)"
+Наш хит tiger 🐅\n\
+Артикул: [182849819](https://www.wildberries.ru/catalog/182849819/detail.aspx?targetUrl=MS)\n\
+\n\
+Нежный белый комплект ☁️\n\
+Артикул: [151158938](https://www.wildberries.ru/catalog/151158938/detail.aspx?targetUrl=MS)\n\
+\n\
+Яркий розовый 🩷\n\
+Артикул: [150623771](https://www.wildberries.ru/catalog/150623771/detail.aspx?targetUrl=MS)"
 
     for subscriber_id in subscribers:
         try:
