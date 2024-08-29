@@ -263,42 +263,23 @@ bot = Bot(token=bot_token, parse_mode="HTML")
 async def send_broadcast_with_media_group(photo_paths, message_text):
     subscribers = get_all_user_ids()
 
-    photo_path1 = 'bot/images/img_7.png'
-    photo_path2 = 'bot/images/3.jpg'
-    photo_path3 = 'bot/images/3.jpg'
+    photo_path1 = 'bot/images/img_9.png'
 
     blocked_users = 0
     successful_sends = 0
-    # Создаем список медиа-группы
-    media_group = [
-            types.InputMediaPhoto(media=InputFile(photo_path1), caption="Комплект топов 2 шт. черный и молочный \n\
-    https://www.wildberries"),
-            types.InputMediaPhoto(media=InputFile(photo_path2), caption='Пижама со штанами шелковая\n\
-    https://www.wildberri'),
-            types.InputMediaPhoto(media=InputFile(photo_path3), caption='Лонгслив укороченный черный с вырезом на спине\n\
-    https://www.wildberri')
-        ]
+
 #
-    text_with_link = "Совсем скоро мы порадуем вас невероятными новинками✨\n\
+    text_with_link = "<b>Привет, милая😍</b>\n\
 \n\
-А пока что напомним вам о комплектах, которые уже полюбились многим девушкам:\n\
+Как твое настроение? Не поддаешься унынию приближающейся осени?🍂\n\
 \n\
-Наш хит tiger 🐅\n\
-Артикул: [182849819](https://www.wildberries.ru/catalog/182849819/detail.aspx?targetUrl=MS)\n\
-\n\
-Нежный белый комплект ☁️\n\
-Артикул: [151158938](https://www.wildberries.ru/catalog/151158938/detail.aspx?targetUrl=MS)\n\
-\n\
-Яркий розовый 🩷\n\
-Артикул: [150623771](https://www.wildberries.ru/catalog/150623771/detail.aspx?targetUrl=MS)"
+Чтобы избежать осенней хандры, мы рекомендуем добавить в свой гардероб яркий зеленый комплект 💚\n\
+Артикул: <a href='https://www.wildberries.ru/catalog/134122307/detail.aspx?targetUrl=MS'>134122307</a>"
 
     for subscriber_id in subscribers:
         try:
-            # Отправляем медиа-группу каждому подписчику
-            # await bot.send_media_group(chat_id=subscriber_id, media=media_group)
-            # await bot.send_message(chat_id=subscriber_id, text=text_with_link)
             await bot.send_photo(subscriber_id, photo=types.InputFile(photo_path1), caption=text_with_link,
-                                 parse_mode=types.ParseMode.MARKDOWN, reply_markup=start_kb_markup)
+                                 parse_mode=types.ParseMode.HTML, reply_markup=start_kb_markup)
             successful_sends += 1
         except Exception as e:
             print(f"Не удалось отправить сообщение подписчику {subscriber_id}: {str(e)}")
