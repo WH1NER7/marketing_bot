@@ -263,18 +263,30 @@ bot = Bot(token=bot_token, parse_mode="HTML")
 async def send_broadcast_with_media_group(photo_paths, message_text):
     subscribers = get_all_user_ids()
 
-    photo_path1 = 'bot/images/img_9.png'
+    photo_path1 = 'bot/images/img_10.png'
 
     blocked_users = 0
     successful_sends = 0
 
 #
-    text_with_link = "<b>Привет, милая😍</b>\n\
+    text_with_link = "Впереди бархатный сезон🌊\n\
 \n\
-Как твое настроение? Не поддаешься унынию приближающейся осени?🍂\n\
+И мы хотели напомнить тебе о нашей летней коллекции:\n\
 \n\
-Чтобы избежать осенней хандры, мы рекомендуем добавить в свой гардероб яркий зеленый комплект 💚\n\
-Артикул: <a href='https://www.wildberries.ru/catalog/134122307/detail.aspx?targetUrl=MS'>134122307</a>"
+Купальник tiger\n\
+Артикул: <a href='https://www.wildberries.ru/catalog/218272630/detail.aspx?targetUrl=MS'>218272630</a>\n\
+\n\
+Черный купальник\n\
+Артикул: <a href='https://www.wildberries.ru/catalog/218272629/detail.aspx?targetUrl=MS'>218272629</a>\n\
+\n\
+Классные кроп топы:\n\
+Артикул: <a href='https://www.wildberries.ru/catalog/158417968/detail.aspx?targetUrl=MS'>158417968</a>\n\
+\n\
+Сетчатые брюки:\n\
+Артикул: <a href='https://www.wildberries.ru/catalog/228738081/detail.aspx?targetUrl=MS'>228738081</a>\n\
+\n\
+Бесподобные туники:\n\
+Артикул: <a href='https://www.wildberries.ru/catalog/226609836/detail.aspx?targetUrl=MS'>226609836</a>"
 
     for subscriber_id in subscribers:
         try:
