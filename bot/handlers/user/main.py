@@ -200,34 +200,25 @@ async def our_shop_link(message: Message):
 async def ready_present(message: types.Message):
     increment_button_counter("ready_present")
 
-    video_path = 'bot/images/IMG_9221.MOV'
+    video_path = 'bot/images/img_4.png'
 
-    text_with_link = "Мы обо всем позаботились и собрали подарочные боксы!! 🎁 \n\
-Дари самым близким только лучшее бельё от MissYourKiss 💋 \n\
-Переходи и выбирай  ⬇️ \n\
+    text_with_link = "Только 2 НЕДЕЛИ на этот комплект будет очень приятная цена!\n\
 \n\
+💥 ❗️ <b>ВСЕГО 1090₽</b> вместо <s>1390₽</s> ❗️ 💥\n\
 \n\
-Страстный красный комплект\n\
-Артикул: [196719351](https://missyourkiss.mobz.click/radmyk)\n\
+— Невесомая трендовая сеточка\n\
+— Комфортный лиф с косточками\n\
+— Эффектные трусики на высокой посадке\n\
 \n\
-Чувственный пудровый комплект\n\
-Артикул: [196717464](https://missyourkiss.mobz.click/pudramyk)\n\
+<b>Артикул: <a href='https://www.wildberries.ru/catalog/200745856/detail.aspx?targetUrl=MS'>200745856</a></b>\n\
 \n\
-Интригующий чёрный комплект\n\
-Артикул: [196720365](https://missyourkiss.mobz.click/blackmyk)\n\
-\n\
-Чёрные трусики в подарочном мешочке\n\
-Артикул: [196691686](https://missyourkiss.mobz.click/drblackmyk)\n\
-\n\
-Пудровые трусики в подарочном мешочке\n\
-Артикул: [196692315](https://missyourkiss.mobz.click/drpudramyk)\n\
-"
+Поторопись, пока не разобрали😉"
 
-    await message.bot.send_video(
+    await message.bot.send_photo(
         chat_id=message.chat.id,
         caption=text_with_link,
-        video=open(video_path, 'rb'),
-        parse_mode=types.ParseMode.MARKDOWN
+        photo=open(video_path, 'rb'),
+        parse_mode=types.ParseMode.HTML
     )
 
 
@@ -263,21 +254,25 @@ bot = Bot(token=bot_token, parse_mode="HTML")
 async def send_broadcast_with_media_group(photo_paths, message_text):
     subscribers = get_all_user_ids()
 
-    photo_path1 = 'bot/images/img_2.png'
+    photo_path1 = 'bot/images/img_3.png'
 
     blocked_users = 0
     successful_sends = 0
 
 #
-    text_with_link = "Мы знаем, как поднять тебе настроение в понедельник!\n\
+    text_with_link = "Всем привет, на связи MISSYOURKISS❤️‍🔥\n\
+И сегодня у нас эксклюзивная новость, только для подписчиков бота🤫\n\
+Хотим порадовать вас скидкой🤩\n\
 \n\
-Сказать о том, что наши крутые новинки уже доступны для заказа🤩\n\
+Только <b>2 НЕДЕЛИ</b> на данный комплект приятная цена\n\
 \n\
-Серый леопардовый комплект🐆\n\
-Артикул:  <a href='https://www.wildberries.ru/catalog/250847159/detail.aspx?targetUrl=EX'>250847159</a>\n\
+<b>ВСЕГО 1090₽</b> вместо <s>1390₽</s>\n\
 \n\
-Комплект с принтом зебра🦓\n\
-Артикул:  <a href='https://www.wildberries.ru/catalog/250846958/detail.aspx?targetUrl=EX'>250846958</a>"
+Комплект с косточками и трусиками на высокой посадке эффектно подчеркнет вашу фигуру, не пережимая и не сдавливая, а нежная и невесомая сеточка подарит ощущения легкости и комфорта каждый день.\n\
+\n\
+<b>Артикул: <a href='https://www.wildberries.ru/catalog/200745856/detail.aspx?targetUrl=MS'>200745856</a></b>\n\
+\n\
+Поторопись, пока не разобрали😉"
 
     for subscriber_id in subscribers:
         try:
@@ -462,7 +457,7 @@ def register_users_handlers(dp: Dispatcher) -> None:
     dp.register_poll_answer_handler(handle_poll_answer)
 
     dp.register_message_handler(shocking_price, content_types=['text'], text="Пляжная коллекция")
-    dp.register_message_handler(ready_present, content_types=['text'], text="Готовый подарок")
+    dp.register_message_handler(ready_present, content_types=['text'], text="SALE")
     dp.register_message_handler(our_shop_link, content_types=['text'], text="Каталог бренда")
     dp.register_message_handler(about_us, content_types=['text'], text="О нас")
 
