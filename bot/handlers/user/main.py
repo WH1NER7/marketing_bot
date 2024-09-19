@@ -254,19 +254,20 @@ bot = Bot(token=bot_token, parse_mode="HTML")
 async def send_broadcast_with_media_group(photo_paths, message_text):
     subscribers = get_all_user_ids()
 
-    photo_path1 = 'bot/images/img_5.png'
+    photo_path1 = 'bot/images/img_6.png'
 
     blocked_users = 0
     successful_sends = 0
 
 #
-    text_with_link = "Привет, дорогая🌸\n\
+    text_with_link = "Привет🌷\n\
+У нас крутая новость!\n\
 \n\
-Ты сегодня уже сказала себе о том, как ты прекрасна?✨\n\
+❗️На ОЗОНЕ при заказе от 1599₽ из представленных товаров мы дарим тебе скидку -10%\n\
 \n\
-Мы лишь напоминаем тебе об этом и о нашем трендовом комплекте🐅\n\
+Поторопись, среди них есть белье из твоего wish листа😉\n\
 \n\
-Артикул: <a href='https://www.wildberries.ru/catalog/182849819/detail.aspx?targetUrl=MS'>182849819</a>"
+<a href='https://www.ozon.ru/highlight/pri-zakaze-ot-1599-rubley-1789469/'>За покупками!</a>"
 
     for subscriber_id in subscribers:
         try:
