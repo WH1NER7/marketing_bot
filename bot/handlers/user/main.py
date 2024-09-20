@@ -162,8 +162,6 @@ async def competition_full_info(callback_query: CallbackQuery):
 (20.12.2023 - 30.12.2023)\n\
 \n\
 Наша команда экспертов выбирает 5 самых красивых и эстетичных рилс с разными просмотрами и публикует в официальном [блоге бренда](https://instagram.com/missyourkiss.brand?igshid=MzMyNGUyNmU2YQ==)  , где совместно с подписчиками мы выбираем победителя конкурса и одно самое лучшее видео с просмотрами на миллион. И его обладатель получает новенький айфон 15!\n\
-\n\
-P.S. А чтобы твой рилс залетел на миллионы просмотров, команда наших экспертов собрала гайд «Reels на миллион» с рекомендациями в подарок!\n\
 ", video=video, reply_markup=markup_competition_extra,  parse_mode=types.ParseMode.MARKDOWN)
 
 

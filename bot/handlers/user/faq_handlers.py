@@ -11,10 +11,8 @@ async def uhod(callback_query: CallbackQuery):
     user_id = callback_query.from_user.id
     await bot.send_message(user_id, "Рекомендуем стирать наши изделия при температуре не выше 30 градусов, выбрав деликатный режим в стиральной машинке, или вручную. \n\
     \n\
-Во избежание разводов сушить их необходимо вдали от обогревательных приборов. Соблюдая эти простые рекомендации, вы надолго сохраните первоначальный вид изделий. \n\
-    \n\
-У Вас есть уникальная возможность получить “Гайд по стилю” из 30 страниц.\n\
-    \n", reply_markup=faq_kb_upd)
+Во избежание разводов сушить их необходимо вдали от обогревательных приборов. Соблюдая эти простые рекомендации, вы надолго сохраните первоначальный вид изделий.",
+                           reply_markup=faq_kb_upd)
 
 
 async def return_cb(callback_query: CallbackQuery):
@@ -34,17 +32,15 @@ async def defect(callback_query: CallbackQuery):
 1. Перейдите по QR-коду из открытки, которая прилагается к комплекту \n\
 2. Перейдите ниже в чат с нами через кнопку “Свяжите меня с менеджером” \n\
     \n\
-И мы оперативно решим ваш вопрос.\n\
-    \n\
-У Вас есть уникальная возможность получить “Гайд по стилю” из 30 страниц. ", reply_markup=faq_kb_defect)
+И мы оперативно решим ваш вопрос.",
+                           reply_markup=faq_kb_defect)
 
 
 async def cert(callback_query: CallbackQuery):
     bot: Bot = callback_query.bot
     user_id = callback_query.from_user.id
-    await bot.send_message(user_id, "Все наши изделия имеют сертификаты соответствия.\n\
-    \n\
-У Вас есть уникальная возможность получить “Гайд по стилю” из 30 страниц.", reply_markup=faq_kb_upd)
+    await bot.send_message(user_id, "Все наши изделия имеют сертификаты соответствия.",
+                           reply_markup=faq_kb_upd)
 
 
 async def size(callback_query: CallbackQuery):
@@ -52,9 +48,8 @@ async def size(callback_query: CallbackQuery):
     user_id = callback_query.from_user.id
     await bot.send_message(user_id, "Все изделия идут в размер и полностью соответствуют размерной сетке, которая расположена среди фотографий карточек.\n\
     \n\
-Для того, чтобы изделие идеально село на вас, рекомендуем измерить все ваши параметры и подобрать размер в соответствии с таблицей.\n\
-    \n\
-У Вас есть уникальная возможность получить “Гайд по стилю” из 30 страниц.", reply_markup=faq_kb_upd)
+Для того, чтобы изделие идеально село на вас, рекомендуем измерить все ваши параметры и подобрать размер в соответствии с таблицей.",
+                           reply_markup=faq_kb_upd)
 
 
 async def price_return(callback_query: CallbackQuery):
@@ -62,9 +57,8 @@ async def price_return(callback_query: CallbackQuery):
     user_id = callback_query.from_user.id
     await bot.send_message(user_id, "Хотим обратить ваше внимание, что нижнее белье относится к категории невозвратных товаров. Но на пункте выдачи заказов до выкупа товара вы можете вернуть его по любой причине.\n\
     \n\
-У нас нет платных отказов. Все денежные отношения на платформе, включая возвраты, регулирует сам маркетплейс.\n\
-    \n\
-У Вас есть уникальная возможность получить “Гайд по стилю” из 30 страниц.", reply_markup=faq_kb_upd)
+У нас нет платных отказов. Все денежные отношения на платформе, включая возвраты, регулирует сам маркетплейс.",
+                           reply_markup=faq_kb_upd)
 
 
 def register_faq_handlers(dp: Dispatcher) -> None:
