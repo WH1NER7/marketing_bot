@@ -250,22 +250,26 @@ bot = Bot(token=bot_token, parse_mode="HTML")
 async def send_broadcast_with_media_group(photo_paths, message_text):
     subscribers = get_all_user_ids()
 
-    photo_path1 = 'bot/images/img_15.png'
+    photo_path1 = 'bot/images/img_16.png'
 
     blocked_users = 0
     successful_sends = 0
 
 #
-    text_with_link = "НОВИНКА🔥\n\
+    text_with_link = "<b>ИНТЕРЕСНЫЙ ФАКТ🤓</b>\n\
 \n\
-Стильный лонг из сеточки😍\n\
+Каждое третье белье, купленное на особый случай, так и остается лежать в шкафу😁\n\
 \n\
-- Итальянская сетка\n\
-- Высокое качество пошива\n\
-- Не ощущается на теле\n\
+Поэтому не жди этого случая, носи красивое и качественное белье каждый день✨\n\
 \n\
-Уже скоро появится в наличии, следи за нашими соц сетями😉"
-# <a href='https://www.wildberries.ru/brands/missyourkiss'>новым классным бельем</a>
+Например, что-то из этого:\n\
+\n\
+Комплект с лифом бандо в цвете сирень 💙\n\
+Артикул: <a href='https://www.wildberries.ru/catalog/200840985/detail.aspx?targetUrl=MS'>200840985</a>\n\
+\n\
+Комплект tiger 🐅\n\
+Артикул: <a href='https://www.wildberries.ru/catalog/177933330/detail.aspx?targetUrl=MS'>177933330</a>"
+# <a href='https://www.wildberries.ru/catalog/200840985/detail.aspx?targetUrl=MS'>200840985</a>
     for subscriber_id in subscribers:
         try:
             await bot.send_photo(subscriber_id, photo=types.InputFile(photo_path1), caption=text_with_link,
