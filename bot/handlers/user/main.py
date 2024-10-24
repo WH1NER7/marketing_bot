@@ -250,32 +250,17 @@ bot = Bot(token=bot_token, parse_mode="HTML")
 async def send_broadcast_with_media_group(photo_paths, message_text):
     subscribers = get_all_user_ids()
 
-    photo_path1 = 'bot/images/img_17.png'
+    photo_path1 = 'bot/images/IMG_4793.MOV'
 
     blocked_users = 0
     successful_sends = 0
 
 #
-    text_with_link = "Пропущенный вызов от MYK (1)\n\
-\n\
-Мы всего лишь хотели порекомендовать тебе этот неоновый комплект нижнего белья из сеточки!\n\
-\n\
-Артикул: <a href='https://www.wildberries.ru/catalog/134122307/detail.aspx?targetUrl=SP'>134122307</a>\n\
-\n\
-Он просто шикарный😍\n\
-- бюстгальтер-топ удобен для любого размера груди\n\
-- трусики с высокой посадкой эффектно подчеркивают фигуру\n\
-- нежнейшая сеточка дарит комфорт и ощущение легкости\n\
-\n\
-Обещаем, в нем ты будешь выглядеть эффектно и чувствовать себя уверенно🤩\n\
-\n\
-Не упусти свой шанс — заказывай и радуй себя новым стильным комплектом!\n\
-\n\
-Нажми <a href='https://www.wildberries.ru/catalog/134122307/detail.aspx?targetUrl=SP'>➕</a> чтобы узнать цену!"
+    text_with_link = "Послание для тебя на сегодня и на каждый день❤️"
 # <a href='https://www.wildberries.ru/catalog/134122307/detail.aspx?targetUrl=SP'>➕</a>
     for subscriber_id in subscribers:
         try:
-            await bot.send_photo(subscriber_id, photo=types.InputFile(photo_path1), caption=text_with_link,
+            await bot.send_video(subscriber_id, video=types.InputFile(photo_path1), caption=text_with_link,
                                  parse_mode=types.ParseMode.HTML, reply_markup=start_kb_markup)
             successful_sends += 1
         except Exception as e:
