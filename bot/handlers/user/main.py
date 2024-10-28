@@ -250,17 +250,35 @@ bot = Bot(token=bot_token, parse_mode="HTML")
 async def send_broadcast_with_media_group(photo_paths, message_text):
     subscribers = get_all_user_ids()
 
-    photo_path1 = 'bot/images/IMG_4793.MOV'
+    photo_path1 = 'bot/images/img_18.png'
 
     blocked_users = 0
     successful_sends = 0
 
 #
-    text_with_link = "Послание для тебя на сегодня и на каждый день❤️"
-# <a href='https://www.wildberries.ru/catalog/134122307/detail.aspx?targetUrl=SP'>➕</a>
+    text_with_link = "Бу! Испугалась?👻\n\
+\n\
+Хэллоуин на подходе, и это означает, что пришло время пофантазировать над образами!\n\
+\n\
+Несколько идей от нас:\n\
+\n\
+- Зловещая русалка:\n\
+Укрась наш бесшовный лиф бандо блестками и пайетками, надень блестящую юбку в пол и образ готов🧜‍♀️\n\
+\n\
+- Харли Квин:\n\
+Яркий макияж с огромной улыбкой и наряд с одним из наших ярких лонгов создадут необычный образ девушки Джокера 🃏\n\
+\n\
+- Зомби-невеста:\n\
+• белое воздушное платье <a href='https://www.wildberries.ru/catalog/232617259/detail.aspx?targetUrl=GP'>232617259</a>\n\
+• колготки с принтом кости <a href='https://www.wildberries.ru/catalog/268927807/detail.aspx?targetUrl=MS&size=416315492'>268927808</a>\n\
+• фата <a href='https://www.wildberries.ru/catalog/15085912/detail.aspx?targetUrl=MS&size=44140049'>15085912</a>\n\
+• белье, которое подчеркнет вашу фигуру <a href='https://www.wildberries.ru/catalog/143418102/detail.aspx?targetUrl=MS'>143418102</a>\n\
+\n\
+Сделай свой Хэллоуин незабываемым вместе с нами🎃"
+# <a href='https://www.wildberries.ru/catalog/143418102/detail.aspx?targetUrl=MS'>143418102</a>
     for subscriber_id in subscribers:
         try:
-            await bot.send_video(subscriber_id, video=types.InputFile(photo_path1), caption=text_with_link,
+            await bot.send_photo(subscriber_id, photo=types.InputFile(photo_path1), caption=text_with_link,
                                  parse_mode=types.ParseMode.HTML, reply_markup=start_kb_markup)
             successful_sends += 1
         except Exception as e:
