@@ -12,7 +12,7 @@ from bot.database.methods.insert import create_user, insert_broadcast_stats, ins
     update_poll_statistics, insert_quiz_stats
 from bot.database.methods.update import upd_link, increment_button_counter
 from bot.keyboards.inline import markup_lk, markup_competition, markup_link, faq_kb, shop_kb, problems_kb, \
-    markup_competition_extra
+    markup_competition_extra, advert_kb
 from bot.keyboards.reply import start_kb_markup
 
 
@@ -250,36 +250,30 @@ bot = Bot(token=bot_token, parse_mode="HTML")
 async def send_broadcast_with_media_group(photo_paths, message_text):
     subscribers = get_all_user_ids()
 
-    photo_path1 = 'bot/images/img_18.png'
+    photo_path1 = 'bot/images/img_19.png'
 
     blocked_users = 0
     successful_sends = 0
 
 #
-    text_with_link = "Бу! Испугалась?👻\n\
+    text_with_link = "Не пропусти! Открой, чтобы узнать о своем новом фаворите! 🌟\n\
 \n\
-Хэллоуин на подходе, и это означает, что пришло время пофантазировать над образами!\n\
+Добавь в свой гардероб лонг и раскрась хмурый осенний день 🎨✨\n\
 \n\
-Несколько идей от нас:\n\
+Эта новинка станет твоим любимым акцентом — знакомься с нашим новым лонгсливом!\n\
 \n\
-- Зловещая русалка:\n\
-Укрась наш бесшовный лиф бандо блестками и пайетками, надень блестящую юбку в пол и образ готов🧜‍♀️\n\
+Нежная сеточка обвивает твоё тело, создавая ощущение невесомости — идеальный вариант для активного образа жизни.\n\
 \n\
-- Харли Квин:\n\
-Яркий макияж с огромной улыбкой и наряд с одним из наших ярких лонгов создадут необычный образ девушки Джокера 🃏\n\
+Этот лонгслив прекрасно впишется в твои повседневные луки и станет надёжным спутником для особых моментов. Будь то классические джинсы или нежная юбка — ты сможешь создать стильный образ за считанные минуты!\n\
 \n\
-- Зомби-невеста:\n\
-• белое воздушное платье <a href='https://www.wildberries.ru/catalog/232617259/detail.aspx?targetUrl=GP'>232617259</a>\n\
-• колготки с принтом кости <a href='https://www.wildberries.ru/catalog/268927807/detail.aspx?targetUrl=MS&size=416315492'>268927808</a>\n\
-• фата <a href='https://www.wildberries.ru/catalog/15085912/detail.aspx?targetUrl=MS&size=44140049'>15085912</a>\n\
-• белье, которое подчеркнет вашу фигуру <a href='https://www.wildberries.ru/catalog/143418102/detail.aspx?targetUrl=MS'>143418102</a>\n\
+Хотела бы добавить эту красоту в свой гардероб?✨\n\
 \n\
-Сделай свой Хэллоуин незабываемым вместе с нами🎃"
+Нажми на кнопку ниже и наслаждайся каждым моментом в новом лонгсливе!"
 # <a href='https://www.wildberries.ru/catalog/143418102/detail.aspx?targetUrl=MS'>143418102</a>
     for subscriber_id in subscribers:
         try:
             await bot.send_photo(subscriber_id, photo=types.InputFile(photo_path1), caption=text_with_link,
-                                 parse_mode=types.ParseMode.HTML, reply_markup=start_kb_markup)
+                                 parse_mode=types.ParseMode.HTML, reply_markup=advert_kb)
             successful_sends += 1
         except Exception as e:
             print(f"Не удалось отправить сообщение подписчику {subscriber_id}: {str(e)}")
