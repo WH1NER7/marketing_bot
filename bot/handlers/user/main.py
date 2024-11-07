@@ -250,25 +250,28 @@ bot = Bot(token=bot_token, parse_mode="HTML")
 async def send_broadcast_with_media_group(photo_paths, message_text):
     subscribers = get_all_user_ids()
 
-    photo_path1 = 'bot/images/img_19.png'
+    photo_path1 = 'bot/images/img_20.png'
 
     blocked_users = 0
     successful_sends = 0
 
 #
-    text_with_link = "Упс 🙈 Вас так много, что бот сломался…\n\
-У кого не открылась ссылка, ловите прямую\n\
+    text_with_link = "Дружеское напоминание ✨\n\
 \n\
-<a href='https://missyourkiss.mobz.click/dne'>ПОСМОТРЕТЬ ЛОНГ</a>\n\
+С приближением Черной пятницы на Озон 11.11 хочу поделиться новостью о потрясающей новинке в мире нижнего белья🔥\n\
 \n\
-Совсем скоро выпустим для вас мини-капсулу «Тренды зимы 2025», не отключайтесь 🩷"
+Инновационные материалы мягкие, дышащие и идеально сидят по фигуре, обеспечивая комфорт в течение всего дня. \n\
+ \n\
+Не забудь о привлекательных скидках на Черную пятницу – отличный шанс обновить гардероб и порадовать себя чем-то особенным. Следи за акциями на Озон и выбирай лучшие модели! Уверена, ты не пожалеешь о своих покупках.\n\
+\n\
+Обнимаю!"
 # <a href='https://missyourkiss.mobz.click/dne'>ПОСМОТРЕТЬ ЛОНГ</a>
     for subscriber_id in subscribers:
         try:
-            # await bot.send_photo(subscriber_id, photo=types.InputFile(photo_path1), caption=text_with_link,
-            #                      parse_mode=types.ParseMode.HTML, reply_markup=advert_kb)
-            await bot.send_message(subscriber_id, text=text_with_link,
-                                 parse_mode=types.ParseMode.HTML, reply_markup=start_kb_markup)
+            await bot.send_photo(subscriber_id, photo=types.InputFile(photo_path1), caption=text_with_link,
+                                 parse_mode=types.ParseMode.HTML, reply_markup=advert_kb)
+            # await bot.send_message(subscriber_id, text=text_with_link,
+            #                      parse_mode=types.ParseMode.HTML, reply_markup=start_kb_markup)
             successful_sends += 1
         except Exception as e:
             print(f"Не удалось отправить сообщение подписчику {subscriber_id}: {str(e)}")
