@@ -28,3 +28,15 @@ def get_all_user_ids():
         users_ids.append(doc.get('user_id'))
 
     return users_ids
+
+
+def get_all_users():
+    # Используем проекцию для выборки только необходимых полей
+    projection = {'user_id': 1, 'user_name': 1, '_id': 0}
+    # Выполняем запрос с проекцией
+    data = db['promo_bot'].find({}, projection)
+
+    # Используем списковое включение для быстрого создания списка кортежей
+    users = [(doc['user_id'], doc['user_name']) for doc in data]
+
+    return users
