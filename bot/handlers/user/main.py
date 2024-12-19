@@ -17,6 +17,9 @@ from bot.keyboards.reply import start_kb_markup
 
 
 from bot.utils.misc import determine_uniqueness
+import logging
+
+logging.basicConfig(level=logging.INFO)
 
 
 class UpdLink(StatesGroup):
@@ -197,10 +200,10 @@ async def get_link(message: Message, state: FSMContext):
 async def our_shop_link(message: Message):
     increment_button_counter("our_shop_link")
 
-    photo = types.InputFile('bot/images/wb_ozon.png')
-    text_with_link = "Благодаря размещению на онлайн-площадках с собственной логистикой мы можем предлагать самые приятные цены и доставлять товар в кратчайшие сроки"
+    # photo = types.InputFile('bot/images/wb_ozon.png')
+    text_with_link = "Бонусы"
 
-    await message.answer_photo(caption=text_with_link, photo=photo, parse_mode=types.ParseMode.MARKDOWN, reply_markup=shop_kb)
+    await message.answer(text=text_with_link, parse_mode=types.ParseMode.MARKDOWN)
 
 
 async def ready_present(message: types.Message):
@@ -260,7 +263,7 @@ async def send_broadcast_with_media_group(photo_paths, message_text):
     user_id_and_name = get_all_users()
 
     # Путь к фото, которое будет отправлено
-    photo_path1 = 'bot/images/img_33.png'
+    photo_path1 = 'bot/images/img_34.png'
 
     print(user_id_and_name)
 
@@ -269,13 +272,17 @@ async def send_broadcast_with_media_group(photo_paths, message_text):
 
     # Шаблон сообщения с плейсхолдером {name}
     message_template = (
-        "{name}, а ты уже в курсе самой горячей распродажи на WB? 👀\n\
-    \n\
-Да-да, ты не ослышалась! На WB сейчас можно заказать наши роскошные комплекты белья до 900 руб за комплект 😱\n\
-    \n\
-Мы знаем, что ты любишь красивое и качественное белье, поэтому подготовили для тебя специальную подборку самых сочных и соблазнительных комплектов. Не упусти шанс обновить свой гардероб белья по невероятно выгодным ценам🤩"
+        "{name}, поздравляем! Ты стала обладательницей 3000₽ на покупку нашего белья! 🤩\n\
+\n\
+Хотела бы ты получить подобное сообщение в преддверии Нового года?\n\
+\n\
+Тогда не теряй время и заходи в наш <a href='https://www.instagram.com/missyourkiss.brand?igsh=bml2NXAyYnAzbWxh'>инстаграм</a>! Там стартовал розыгрыш с простыми условиями🔥\n\
+\n\
+https://www.instagram.com/missyourkiss.brand\n\
+\n\
+Мы ждем тебя!"
 )
-    # "<a href='https://missyourkiss.mobz.click/dne'>ПОСМОТРЕТЬ ЛОНГ</a>"
+    # "<a href='https://www.instagram.com/missyourkiss.brand?igsh=bml2NXAyYnAzbWxh'>инстаграм</a>"
     for subscriber_id, subscriber_name in user_id_and_name:
         # Проверка, что имя начинается с буквы
         if subscriber_name and isinstance(subscriber_name, str) and subscriber_name[0].isalpha():
@@ -296,7 +303,8 @@ async def send_broadcast_with_media_group(photo_paths, message_text):
                 photo=InputFile(photo_path1),
                 caption=personalized_text,
                 parse_mode=types.ParseMode.HTML,
-                reply_markup=advert_kb
+                # reply_markup=advert_kb
+                reply_markup=start_kb_markup
             )
             successful_sends += 1
         except Exception as e:
@@ -469,7 +477,41 @@ async def handle_poll_answer(poll_answer: types.PollAnswer):
         del user_poll_data[poll_id]
 
 
+# Список разрешённых каналов (замените на реальные ID ваших каналов)
+ALLOWED_CHANNELS = {
+    -1002292007217: "Тест1"
+}
+
+
+async def join_request_handler(chat_join_request: types.ChatJoinRequest):
+    channel_id = chat_join_request.chat.id
+    user_id = chat_join_request.from_user.id
+    print(channel_id)
+    if channel_id in ALLOWED_CHANNELS:
+        # Одобряем запрос
+        await bot.approve_chat_join_request(chat_id=channel_id, user_id=user_id)
+
+        # Отправляем приветственное сообщение
+        welcome_message = (
+            f"Здравствуйте, {chat_join_request.from_user.first_name}! "
+            f"Вы были добавлены в канал *{ALLOWED_CHANNELS[channel_id]}*. "
+            "В этом боте вы можете ознакомиться с нашим магазином."
+        )
+        await bot.send_message(
+            chat_id=user_id,
+            text=welcome_message,
+            parse_mode='Markdown'
+        )
+        logging.info(f"Пользователь {user_id} добавлен в {ALLOWED_CHANNELS[channel_id]}.")
+    else:
+        logging.warning(f"Запрос на вступление в неизвестный канал: {channel_id}")
+        # Опционально: отклонить запрос или выполнить другое действие
+        await bot.decline_chat_join_request(chat_id=channel_id, user_id=user_id)
+
+
 def register_users_handlers(dp: Dispatcher) -> None:
+    dp.register_chat_join_request_handler(join_request_handler)
+
     dp.register_message_handler(start, commands=["start"])
     dp.register_message_handler(broadcast_command, commands=["broadcast"])
     dp.register_message_handler(service, content_types=['text'], text="Служба заботы")
@@ -477,9 +519,9 @@ def register_users_handlers(dp: Dispatcher) -> None:
     dp.register_message_handler(send_quiz, commands=["quiz"])
     dp.register_poll_answer_handler(handle_poll_answer)
 
-    dp.register_message_handler(shocking_price, content_types=['text'], text="Пляжная коллекция")
-    dp.register_message_handler(ready_present, content_types=['text'], text="SALE")
-    dp.register_message_handler(our_shop_link, content_types=['text'], text="Каталог бренда")
+    dp.register_message_handler(shocking_price, content_types=['text'], text="Что такое умный купальник?")
+    dp.register_message_handler(ready_present, content_types=['text'], text="Горячие предложения")
+    dp.register_message_handler(our_shop_link, content_types=['text'], text="Бонусы")
     dp.register_message_handler(about_us, content_types=['text'], text="О нас")
 
     dp.register_callback_query_handler(faq_info, lambda c: c.data == 'faq')
