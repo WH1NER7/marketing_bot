@@ -1,3 +1,4 @@
+import logging
 from datetime import datetime
 from os import getenv
 
@@ -467,6 +468,38 @@ async def handle_poll_answer(poll_answer: types.PollAnswer):
 
         # Удаление ID второго опроса из хранилища
         del user_poll_data[poll_id]
+
+
+# Список разрешённых каналов (замените на реальные ID ваших каналов)
+ALLOWED_CHANNELS = {
+    -1002292007217: "Тест1"
+}
+
+
+async def join_request_handler(chat_join_request: types.ChatJoinRequest):
+    channel_id = chat_join_request.chat.id
+    user_id = chat_join_request.from_user.id
+    print(channel_id)
+    if channel_id in ALLOWED_CHANNELS:
+        # Одобряем запрос
+        await bot.approve_chat_join_request(chat_id=channel_id, user_id=user_id)
+
+        # Отправляем приветственное сообщение
+        welcome_message = (
+            f"Здравствуйте, {chat_join_request.from_user.first_name}! "
+            f"Вы были добавлены в канал *{ALLOWED_CHANNELS[channel_id]}*. "
+            "В этом боте вы можете ознакомиться с нашим магазином."
+        )
+        await bot.send_message(
+            chat_id=user_id,
+            text=welcome_message,
+            parse_mode='Markdown'
+        )
+        logging.info(f"Пользователь {user_id} добавлен в {ALLOWED_CHANNELS[channel_id]}.")
+    else:
+        logging.warning(f"Запрос на вступление в неизвестный канал: {channel_id}")
+        # Опционально: отклонить запрос или выполнить другое действие
+        await bot.decline_chat_join_request(chat_id=channel_id, user_id=user_id)
 
 
 def register_users_handlers(dp: Dispatcher) -> None:
