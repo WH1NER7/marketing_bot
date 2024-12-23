@@ -510,8 +510,6 @@ async def join_request_handler(chat_join_request: types.ChatJoinRequest):
 
 
 def register_users_handlers(dp: Dispatcher) -> None:
-    dp.register_chat_join_request_handler(join_request_handler)
-
     dp.register_message_handler(start, commands=["start"])
     dp.register_message_handler(broadcast_command, commands=["broadcast"])
     dp.register_message_handler(service, content_types=['text'], text="Служба заботы")
@@ -519,9 +517,9 @@ def register_users_handlers(dp: Dispatcher) -> None:
     dp.register_message_handler(send_quiz, commands=["quiz"])
     dp.register_poll_answer_handler(handle_poll_answer)
 
-    dp.register_message_handler(shocking_price, content_types=['text'], text="Что такое умный купальник?")
-    dp.register_message_handler(ready_present, content_types=['text'], text="Горячие предложения")
-    dp.register_message_handler(our_shop_link, content_types=['text'], text="Бонусы")
+    dp.register_message_handler(shocking_price, content_types=['text'], text="Пляжная коллекция")
+    dp.register_message_handler(ready_present, content_types=['text'], text="SALE")
+    dp.register_message_handler(our_shop_link, content_types=['text'], text="Каталог бренда")
     dp.register_message_handler(about_us, content_types=['text'], text="О нас")
 
     dp.register_callback_query_handler(faq_info, lambda c: c.data == 'faq')
