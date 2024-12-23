@@ -198,10 +198,10 @@ async def get_link(message: Message, state: FSMContext):
 async def our_shop_link(message: Message):
     increment_button_counter("our_shop_link")
 
-    photo = types.InputFile('bot/images/wb_ozon.png')
-    text_with_link = "Благодаря размещению на онлайн-площадках с собственной логистикой мы можем предлагать самые приятные цены и доставлять товар в кратчайшие сроки"
+    # photo = types.InputFile('bot/images/wb_ozon.png')
+    text_with_link = "Бонусы"
 
-    await message.answer_photo(caption=text_with_link, photo=photo, parse_mode=types.ParseMode.MARKDOWN, reply_markup=shop_kb)
+    await message.answer(text=text_with_link, parse_mode=types.ParseMode.MARKDOWN)
 
 
 async def ready_present(message: types.Message):
