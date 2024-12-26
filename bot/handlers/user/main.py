@@ -20,6 +20,12 @@ from bot.keyboards.reply import start_kb_markup
 from bot.utils.misc import determine_uniqueness
 
 
+bot_token = getenv("BOT_TOKEN")
+if not bot_token:
+    exit("Error: no token provided")
+bot = Bot(token=bot_token, parse_mode="HTML")
+
+
 class UpdLink(StatesGroup):
     waiting_link = State()
 
@@ -54,19 +60,7 @@ async def about_us(message: Message):
 
     await message.answer_video(
         caption=
-'Искренне благодарим Вас за выбор нашего бренда.\n\
-MissYourKiss\n\
-- это нижнее белье, аксессуары и купальники\n\
-- это российское производство\n\
-- это сексуальность и чувственность в каждом движении\n\
-- это быть готовой к особому случаю в любой момент\n\
-\n\
-[Мы в нельзяграм](https://instagram.com/missyourkiss.brand?igshid=MzRlODBiNWFlZA==) \n\
-\n\
-[Мы на YouTube](https://www.youtube.com/@missyourkiss)\n\
-\n\
-[Мы на Pinterest](https://pin.it/2n7w8Efa9)\n\
-',
+'НУЖЕН ПОСТ И ТЕКСТ',
         video=video,
         # reply_markup=markup_competition,
         parse_mode=types.ParseMode.MARKDOWN)
@@ -199,7 +193,7 @@ async def our_shop_link(message: Message):
     increment_button_counter("our_shop_link")
 
     # photo = types.InputFile('bot/images/wb_ozon.png')
-    text_with_link = "Бонусы"
+    text_with_link = "НУЖЕН ПОСТ И ТЕКСТ"
 
     await message.answer(text=text_with_link, parse_mode=types.ParseMode.MARKDOWN)
 
@@ -209,15 +203,7 @@ async def ready_present(message: types.Message):
 
     video_path = 'bot/images/img_13.png'
 
-    text_with_link = "<b>❗️BIG SALE❗️</b>\n\
-\n\
-На Wildberries стартовала масштабная акция🔥\n\
-\n\
-Сейчас ты можешь заказать множество товаров по выгодным ценам, в том числе и наше белье😍\n\
-\n\
-Скорее переходи в <a href='https://www.wildberries.ru/brands/missyourkiss'>магазин</a> кидай в корзину свои желанные комплекты, пока их не раскупили🛒\n\
-\n\
-А еще при покупке от 4000₽ ты сможешь поучаствовать в розыгрыше квартиры в Москве, iPhone и других классных призов!"
+    text_with_link = "НУЖЕН ПОСТ И ТЕКСТ"
 
     await message.bot.send_photo(
         chat_id=message.chat.id,
@@ -230,30 +216,25 @@ async def ready_present(message: types.Message):
 async def shocking_price(message: Message):
     increment_button_counter("shocking_price")
 
-    photo = types.InputFile('bot/images/kupalnik.jpg')
+    photo = types.InputFile('bot/images/IMG_7368.JPG')
 
-    text_with_link = "Самые яркие летние комплекты по самым вкусным ценам. Будь яркой каждый день, переходи и выбирай \n\
+    text_with_link = "▎Умные купальники: новое слово в пляжной моде!\n\
 \n\
+Привет, дамы! 🌊\n\
 \n\
-Наш TOP бикини купальник TIGER 🔥\n\
-Артикул: [218272630](https://www.wildberries.ru/catalog/218272630/detail.aspx?targetUrlBP)\n\
+Вы когда-нибудь задумывались, что купальник может делать больше, чем просто прикрывать тело?\n\
 \n\
-Черный бикини купальник\n\
-Артикул: [218272629](https://www.wildberries.ru/catalog/218272629/detail.aspx?targetUrlBP)\n\
+🩱Умные купальники — это будущее пляжной одежды!\n\
 \n\
-Туника пляжная\n\
-Артикул: [226609836](https://www.wildberries.ru/catalog/226609836/detail.aspx?targetUrl=BP)\n\
+Они оснащены технологиями, которые следят за состоянием кожи и защищают от ультрафиолетовых лучей, напоминая вам о необходимости воспользоваться солнцезащитным кремом.\n\
 \n\
-Кроп топ пляжный\n\
-Артикул: [158417968](https://www.wildberries.ru/catalog/158417968/detail.aspx?targetUrl=BP)"
+Изготовленные из специального легкого материала, такие купальники быстро сохнут и помогут создавать идеальные снимки, подчеркивая вашу фигуру.\n\
+\n\
+Не упустите шанс стать обладательницей умного купальника! 🌞✨"
 
     await message.answer_photo(caption=text_with_link, photo=photo, parse_mode=types.ParseMode.MARKDOWN)
 
 
-bot_token = getenv("BOT_TOKEN")
-if not bot_token:
-    exit("Error: no token provided")
-bot = Bot(token=bot_token, parse_mode="HTML")
 
 
 async def send_broadcast_with_media_group(photo_paths, message_text):
