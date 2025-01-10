@@ -9,7 +9,7 @@ from aiogram.dispatcher.filters.state import StatesGroup, State
 
 from bot.database.methods.get import check_link, get_all_user_ids, get_all_users
 from bot.database.methods.insert import create_user, insert_broadcast_stats, insert_poll_response, \
-    update_poll_statistics, insert_quiz_stats
+    update_poll_statistics, insert_quiz_stats, get_new_users_current_month, get_total_subscribers
 from bot.database.methods.update import upd_link, increment_button_counter
 from bot.keyboards.inline import markup_lk, markup_competition, markup_link, faq_kb, shop_kb, problems_kb, \
     markup_competition_extra, advert_kb
@@ -263,7 +263,7 @@ async def send_broadcast_with_media_group(photo_paths, message_text):
     user_id_and_name = get_all_users()
 
     # Путь к фото, которое будет отправлено
-    photo_path1 = 'bot/images/img_38.png'
+    photo_path1 = 'bot/images/img_39.png'
 
     print(user_id_and_name)
 
@@ -272,23 +272,18 @@ async def send_broadcast_with_media_group(photo_paths, message_text):
 
     # Шаблон сообщения с плейсхолдером {name}
     message_template = (
-        "{name}, тебе секретное послание от Снегурочки 🩷\n\
+        "{name}, поможешь с выбором?🥺\n\
 \n\
-Только тсс 🤫 Дед Мороз не знает об этом, потому что не разрешает мне надевать такое красивое белье. Говорит, что я еще маленькая.\n\
+Ох, этот <a href='https://missyourkiss.mobz.click/uyqd9'>леопардовый комплект</a>... Он просто завораживает! Да?\n\
 \n\
-Но ты то большая девочка, поэтому лови артикулы на которые я сделала волшебные  новогодние цены 🔥\n\
+Нежная, несомая сеточка, которая обволакивает тело, словно облачко — ты забываешь, что на тебе вообще что-то есть! Чувство невесомости и абсолютного комфорта.\n\
 \n\
-171994371 - нежный комплект черного белья с подвязками\n\
+Трусики <a href='https://missyourkiss.mobz.click/i0nrd'>бразилиана</a> на высокой посадке без давления — сексуальность и красота в одном комплекте😌\n\
 \n\
-201400203 - эротичный комплект с принтом «мушка»\n\
-\n\
-265138847 - красный комплект с поясом\n\
-\n\
-Жми «Посмотреть всё», чтобы увидеть все товары с выгодой до 90% 🔥\n\
-\n\
-С любовью, Снегурочка 🤫"
+А такой стильный <a href='https://missyourkiss.mobz.click/mdg'>черный комплект</a> идеально подчеркивает фигуру, а зона декольте.. ммм🔥\n\
+Трусики с широкой ластовицей подарят максимальный комфорт. Идеальная альтернатива кружевному белью для незабываемых моментов🥰"
 )
-    # "<a href='https://www.instagram.com/missyourkiss.brand?igsh=bml2NXAyYnAzbWxh'>инстаграм</a>"
+    # "<a href='https://missyourkiss.mobz.click/mdg'>черный комплект</a>"
     for subscriber_id, subscriber_name in user_id_and_name:
         # Проверка, что имя начинается с буквы
         if subscriber_name and isinstance(subscriber_name, str) and subscriber_name[0].isalpha():
@@ -309,15 +304,27 @@ async def send_broadcast_with_media_group(photo_paths, message_text):
                 photo=InputFile(photo_path1),
                 caption=personalized_text,
                 parse_mode=types.ParseMode.HTML,
-                reply_markup=advert_kb
-                # reply_markup=start_kb_markup
+                # reply_markup=advert_kb
+                reply_markup=start_kb_markup
             )
             successful_sends += 1
         except Exception as e:
             print(f"Не удалось отправить сообщение подписчику {subscriber_id}: {str(e)}")
             blocked_users += 1
 
-        # Сохраняем статистику рассылки
+    for admin_user in [615742233, 1080039077]:
+        await bot.send_message(
+            chat_id=admin_user,
+            text=f"Всего пользователей {get_total_subscribers()}\n\
+Получили рассылку: {successful_sends}\n\
+Забанили бота {blocked_users}\n\
+===========================\n\
+Новых пользователей за месяц {get_new_users_current_month()}",
+            parse_mode=types.ParseMode.HTML,
+            # reply_markup=advert_kb
+            reply_markup=start_kb_markup
+        )
+    # Сохраняем статистику рассылки
     insert_broadcast_stats(blocked_users, successful_sends)
 
 
