@@ -258,32 +258,44 @@ if not bot_token:
 bot = Bot(token=bot_token, parse_mode="HTML")
 
 
+from aiogram import types
+from aiogram.types import InputFile
+from datetime import datetime
+import sys
+
 async def send_broadcast_with_media_group(photo_paths, message_text):
     # Получаем список пользователей с их именами
     user_id_and_name = get_all_users()
 
     # Путь к фото, которое будет отправлено
-    photo_path1 = 'bot/images/img_39.png'
+    photo_path1 = 'bot/images/IMG_9883.MOV'
 
     print(user_id_and_name)
-
     blocked_users = 0
     successful_sends = 0
 
     # Шаблон сообщения с плейсхолдером {name}
     message_template = (
-        "{name}, поможешь с выбором?🥺\n\
+        "{name}, ты видела? Тебе подарок — трусики!✨\n\
 \n\
-Ох, этот <a href='https://missyourkiss.mobz.click/uyqd9'>леопардовый комплект</a>... Он просто завораживает! Да?\n\
+Получи три идеально сидящие модели трусиков.\n\
+Набор 2+1 состоит из:\n\
 \n\
-Нежная, несомая сеточка, которая обволакивает тело, словно облачко — ты забываешь, что на тебе вообще что-то есть! Чувство невесомости и абсолютного комфорта.\n\
+Белые стринги подчеркивающие твои изящные формы.\n\
+Красные дерьеры с регулируемыми лямками для игривого настроения.\n\
+Чёрные с высокой посадкой, для дерзкого образа.\n\
 \n\
-Трусики <a href='https://missyourkiss.mobz.click/i0nrd'>бразилиана</a> на высокой посадке без давления — сексуальность и красота в одном комплекте😌\n\
-\n\
-А такой стильный <a href='https://missyourkiss.mobz.click/mdg'>черный комплект</a> идеально подчеркивает фигуру, а зона декольте.. ммм🔥\n\
-Трусики с широкой ластовицей подарят максимальный комфорт. Идеальная альтернатива кружевному белью для незабываемых моментов🥰"
-)
-    # "<a href='https://missyourkiss.mobz.click/mdg'>черный комплект</a>"
+Выбирай базовые оттенки под любое настроение.\n\
+Скорее добавляй красоту в свою коллекцию!💋"
+    )
+    # "<a href='https://..click/'></a>"
+
+    # Параметры опроса
+    poll_question = "А какие ты выберешь?"
+    poll_options = ["❤️", "🤍", "🖤"]
+    poll_is_anonymous = True
+    poll_type = "regular"  # Тип опроса: 'regular' или 'quiz'
+
     for subscriber_id, subscriber_name in user_id_and_name:
         # Проверка, что имя начинается с буквы
         if subscriber_name and isinstance(subscriber_name, str) and subscriber_name[0].isalpha():
@@ -291,7 +303,7 @@ async def send_broadcast_with_media_group(photo_paths, message_text):
             # Используем .strip() для удаления возможных пробелов в начале и конце
             cleaned_name = subscriber_name.strip().capitalize()
         else:
-            # Если имя не начинается с буквы или отсутствует, используем "Пользователь"
+            # Если имя не начинается с буквы или отсутствует, используем "Дорогая"
             cleaned_name = "Дорогая"
 
         try:
@@ -299,33 +311,54 @@ async def send_broadcast_with_media_group(photo_paths, message_text):
             personalized_text = message_template.format(name=cleaned_name)
 
             # Отправляем фото с персонализированным сообщением
-            await bot.send_photo(
+            await bot.send_video(
                 subscriber_id,
-                photo=InputFile(photo_path1),
+                video=InputFile(photo_path1),
                 caption=personalized_text,
                 parse_mode=types.ParseMode.HTML,
-                # reply_markup=advert_kb
-                reply_markup=start_kb_markup
+                reply_markup=advert_kb  # Если нужна клавиатура, оставь эту строку
+                # reply_markup=start_kb_markup  # Пример использования клавиатуры
             )
             successful_sends += 1
+
+            # Отправляем опрос
+            await bot.send_poll(
+                chat_id=subscriber_id,
+                question=poll_question,
+                options=poll_options,
+                is_anonymous=poll_is_anonymous,
+                type=poll_type,
+                # Можно добавить другие параметры, например:
+                # allows_multiple_answers=False,
+                # correct_option_id=None  # Не нужен для regular опроса
+            )
+
         except Exception as e:
-            print(f"Не удалось отправить сообщение подписчику {subscriber_id}: {str(e)}")
+            print(f"Не удалось отправить сообщение подписчику {subscriber_id}: {str(e)}", file=sys.stderr)
             blocked_users += 1
 
+    # Отправляем сообщение администраторам
     for admin_user in [615742233, 1080039077]:
-        await bot.send_message(
-            chat_id=admin_user,
-            text=f"Всего пользователей {get_total_subscribers()}\n\
-Получили рассылку: {successful_sends}\n\
-Забанили бота {blocked_users}\n\
-===========================\n\
-Новых пользователей за месяц {get_new_users_current_month()}",
-            parse_mode=types.ParseMode.HTML,
-            # reply_markup=advert_kb
-            reply_markup=start_kb_markup
-        )
+        try:
+            await bot.send_message(
+                chat_id=admin_user,
+                text=(
+                    f"Всего пользователей: {get_total_subscribers()}\n"
+                    f"Получили рассылку: {successful_sends}\n"
+                    f"Забанили бота: {blocked_users}\n"
+                    f"===========================\n"
+                    f"Новых пользователей за месяц: {get_new_users_current_month()}"
+                ),
+                parse_mode=types.ParseMode.HTML,
+                # reply_markup=advert_kb  # Если нужна клавиатура, оставь эту строку
+                reply_markup=start_kb_markup  # Пример использования клавиатуры
+            )
+        except Exception as e:
+            print(f"Не удалось отправить сообщение администратору {admin_user}: {str(e)}", file=sys.stderr)
+
     # Сохраняем статистику рассылки
     insert_broadcast_stats(blocked_users, successful_sends)
+
 
 
 # Пример использования функции рассылки с медиа-группой
