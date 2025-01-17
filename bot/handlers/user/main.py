@@ -268,7 +268,7 @@ async def send_broadcast_with_media_group(photo_paths, message_text):
     user_id_and_name = get_all_users()
 
     # Путь к фото, которое будет отправлено
-    photo_path1 = 'bot/images/img_41.png'
+    photo_path1 = 'bot/images/IMG_0286.MOV'
 
     print(user_id_and_name)
     blocked_users = 0
@@ -276,20 +276,14 @@ async def send_broadcast_with_media_group(photo_paths, message_text):
 
     # Шаблон сообщения с плейсхолдером {name}
     message_template = (
-        "{name}, ПОЧЕМУ Серкан Болат так поступает?!?\n\
+        "Этого еще нет на Wildberries\n\
 \n\
-Он опять меня влюбляет в свои турецкие сериалы:\n\
+Приготовься к нашей первой новинке 2025 года. В трендовом винном оттенке, который сочетает в себе изысканность и роскошь.\n\
 \n\
-Услышь меня (2022)\n\
-Эким и Лейла мечтают о престижной школе. После несчастного случая Эким начинает расследование, чтобы найти виновного.\n \
+Это комфорт, удобство и уверенность в каждом движении, как вы любите, ощущения словно легкое послевкусие дорогого вина.\n\
 \n\
-Если сильно полюбишь (2023)\n\
-Атеш, уехавший после смерти матери учиться за границу, и Лейла , не знающая своей семьи и живущая  мошенничеством...\n\
-\n\
-Красные бутоны (2023)\n\
-После землетрясения семья переезжает в Стамбул, где мать борется, чтобы спасти дочь от коварных планов.\n\
-\n\
-Отдыхай, заряжайся энергией и встречай новый день с улыбкой! ✨"
+Это не просто комплект белья — это стильный аксессуар для твоей коллекции.\n\
+Скоро в продаже! ❤️"
     )
     # "<a href='https://..click/'></a>"
 
@@ -314,9 +308,9 @@ async def send_broadcast_with_media_group(photo_paths, message_text):
             personalized_text = message_template.format(name=cleaned_name)
 
             # Отправляем фото с персонализированным сообщением
-            await bot.send_photo(
+            await bot.send_video(
                 subscriber_id,
-                photo=InputFile(photo_path1),
+                video=InputFile(photo_path1),
                 caption=personalized_text,
                 parse_mode=types.ParseMode.HTML,
                 # reply_markup=advert_kb  # Если нужна клавиатура, оставь эту строку
