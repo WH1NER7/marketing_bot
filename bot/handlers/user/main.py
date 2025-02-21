@@ -319,8 +319,8 @@ async def send_broadcast_with_media_group(photo_paths, message_text):
                 photo=InputFile(photo_path1),
                 caption=personalized_text,
                 parse_mode=types.ParseMode.HTML,
-                reply_markup=advert_kb  # Если нужна клавиатура, оставь эту строку
-                # reply_markup=start_kb_markup  # Пример использования клавиатуры
+                # reply_markup=advert_kb  # Если нужна клавиатура, оставь эту строку
+                reply_markup=start_kb_markup  # Пример использования клавиатуры
             )
             successful_sends += 1
 
