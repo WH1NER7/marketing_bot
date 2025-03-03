@@ -40,7 +40,7 @@ class UpdLink(StatesGroup):
 async def service(message: Message):
     increment_button_counter("service")
 
-    video = types.InputFile('bot/images/IMG_9661.MOV')
+    video = types.InputFile('bot/images/IMG_7336.MP4')
     await message.answer_video(caption=f'Привет!👋\n\
 Спасибо, что написали нам, вместо того, чтобы оставлять плохой отзыв.❤️\n\
 \n\
