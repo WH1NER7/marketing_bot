@@ -270,7 +270,7 @@ async def send_broadcast_with_media_group(photo_paths, message_text):
     user_id_and_name = get_all_users()
 
     # Путь к фото, которое будет отправлено
-    photo_path1 = 'bot/images/IMG_7868.MOV'
+    photo_path1 = 'bot/images/img_60.png'
 
     print(user_id_and_name)
     blocked_users = 0
@@ -278,11 +278,12 @@ async def send_broadcast_with_media_group(photo_paths, message_text):
 
     # Шаблон сообщения с плейсхолдером {name}
     message_template = (
-        "<b>Говорят, счастье нельзя купить… но мы с этим не согласны</b>\n\
+        "<b>Имя, ты когда-нибудь задумывалась, сколько времени ты проводишь в белье?\n\
     \n\
-{name}, знаешь, что самое приятное? Чувствовать себя восхитительно и получать комплименты.\n\
+Каждый день, каждую минуту.</b>\n\
+Это не просто одежда, это то, с чем ты проводишь большую часть времени. Почему бы не выбрать то, что дарит тебе комфорт и уверенность в себе?\n\
     \n\
-Те, кто уже заказал наше бельё, точно знают, о чём речь — <i><b>почитай, что они говорят о своих комплектах.</b></i>"
+✨ <i>Наше белье создано для тебя — чтобы ты чувствовала себя максимально уютно и стильно.</i>"
     )
     # "<a href='https://missyourkiss.mobz.click/khzlu'>«Завораживающая богиня»</a>"
 
@@ -307,9 +308,9 @@ async def send_broadcast_with_media_group(photo_paths, message_text):
             personalized_text = message_template.format(name=cleaned_name)
 
             # Отправляем фото с персонализированным сообщением
-            await bot.send_video(
+            await bot.send_photo(
                 subscriber_id,
-                video=InputFile(photo_path1),
+                photo=InputFile(photo_path1),
                 caption=personalized_text,
                 parse_mode=types.ParseMode.HTML,
                 reply_markup=advert_kb  # Если нужна клавиатура, оставь эту строку
