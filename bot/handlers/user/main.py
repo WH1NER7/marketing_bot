@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import datetime, timedelta
 from os import getenv
 
 from aiogram import Dispatcher, Bot, types
@@ -259,18 +259,67 @@ if not bot_token:
     exit("Error: no token provided")
 bot = Bot(token=bot_token, parse_mode="HTML")
 
+SENT_MESSAGES_FILE = "sent_messages.json"
+
+import json
+# Функция для очистки файла перед рассылкой
+def reset_sent_messages_file():
+    with open(SENT_MESSAGES_FILE, 'w') as f:
+        json.dump([], f)
+
+
+# Функция для записи отправленного сообщения
+def log_sent_message(chat_id, message_id, timestamp):
+    with open(SENT_MESSAGES_FILE, 'r+') as f:
+        data = json.load(f)
+        data.append({
+            "chat_id": chat_id,
+            "message_id": message_id,
+            "timestamp": timestamp
+        })
+        f.seek(0)
+        json.dump(data, f, indent=4)
+
+
+# Функция удаления сообщений
+async def delete_all_sent_messages():
+    try:
+        with open(SENT_MESSAGES_FILE, 'r') as f:
+            messages = json.load(f)
+
+        for msg in messages:
+            try:
+                await bot.delete_message(
+                    chat_id=msg["chat_id"],
+                    message_id=msg["message_id"]
+                )
+                print(f"Удалено сообщение: chat {msg['chat_id']} msg {msg['message_id']}")
+            except Exception as e:
+                print(f"Ошибка удаления: {e}")
+
+        # Очищаем файл после удаления
+        reset_sent_messages_file()
+    except Exception as e:
+        print(f"Ошибка при удалении сообщений: {e}")
+
+
+async def cmd_delete_all_messages(message: types.Message):
+    await message.answer("Начинаю удаление всех отправленных сообщений...")
+    await delete_all_sent_messages()
+    await message.answer("Готово! Все сообщения удалены.")
 
 from aiogram import types
 from aiogram.types import InputFile
 from datetime import datetime
 import sys
 
+
 async def send_broadcast_with_media_group(photo_paths, message_text):
     # Получаем список пользователей с их именами
     user_id_and_name = get_all_users()
 
     # Путь к фото, которое будет отправлено
-    photo_path1 = 'bot/images/img_60.png'
+    photo_path1 = 'bot/images/img_61.png'
 
     print(user_id_and_name)
     blocked_users = 0
@@ -278,12 +327,13 @@ async def send_broadcast_with_media_group(photo_paths, message_text):
 
     # Шаблон сообщения с плейсхолдером {name}
     message_template = (
-        "<b>{name}, ты когда-нибудь задумывалась, сколько времени ты проводишь в белье?\n\
-    \n\
-Каждый день, каждую минуту.</b>\n\
-Это не просто одежда, это то, с чем ты проводишь большую часть времени. Почему бы не выбрать то, что дарит тебе комфорт и уверенность в себе?\n\
-    \n\
-✨ <i>Наше белье создано для тебя — чтобы ты чувствовала себя максимально уютно и стильно.</i>"
+        "<b>Первые кадры новой коллекции купальников уже здесь!</b>\n\
+\n\
+🥹❤️😍\n\
+Мы провели съемку с нашими новыми купальниками, и это просто что-то невероятное… Они такие яркие, стильные. Вы просто обязаны их увидеть!\n\
+\n\
+<i>Но… будьте осторожны!\n\
+Переходя в наш Telegram, вы рискуете не только влюбиться в купальники, но и моментально захотеть отправиться на море 🏖️</i>"
     )
     # "<a href='https://missyourkiss.mobz.click/khzlu'>«Завораживающая богиня»</a>"
 
@@ -293,45 +343,37 @@ async def send_broadcast_with_media_group(photo_paths, message_text):
     poll_is_anonymous = False
     poll_type = "regular"  # Тип опроса: 'regular' или 'quiz'
 
+    reset_sent_messages_file()
+
     for subscriber_id, subscriber_name in user_id_and_name:
-        # Проверка, что имя начинается с буквы
         if subscriber_name and isinstance(subscriber_name, str) and subscriber_name[0].isalpha():
-            # Приведение первой буквы к заглавной
-            # Используем .strip() для удаления возможных пробелов в начале и конце
             cleaned_name = subscriber_name.strip().capitalize()
         else:
-            # Если имя не начинается с буквы или отсутствует, используем "Дорогая"
             cleaned_name = "Дорогая"
 
         try:
-            # Формируем персонализированный текст сообщения
             personalized_text = message_template.format(name=cleaned_name)
 
-            # Отправляем фото с персонализированным сообщением
-            await bot.send_photo(
+            # Отправляем сообщение
+            sent_message = await bot.send_photo(
                 subscriber_id,
-                photo=InputFile(photo_path1),
+                InputFile(photo_path1),
                 caption=personalized_text,
                 parse_mode=types.ParseMode.HTML,
-                reply_markup=advert_kb  # Если нужна клавиатура, оставь эту строку
-                # reply_markup=start_kb_markup  # Пример использования клавиатуры
+                reply_markup=advert_kb
             )
+
+            # Записываем отправленное сообщение в файл
+            log_sent_message(
+                chat_id=subscriber_id,
+                message_id=sent_message.message_id,
+                timestamp=datetime.now().timestamp()
+            )
+
             successful_sends += 1
 
-            # # Отправляем опрос
-            # await bot.send_poll(
-            #     chat_id=subscriber_id,
-            #     question=poll_question,
-            #     options=poll_options,
-            #     is_anonymous=poll_is_anonymous,
-            #     type=poll_type,
-            #     # Можно добавить другие параметры, например:
-            #     # allows_multiple_answers=False,
-            #     # correct_option_id=None  # Не нужен для regular опроса
-            # )
-
         except Exception as e:
-            print(f"Не удалось отправить сообщение подписчику {subscriber_id}: {str(e)}", file=sys.stderr)
+            print(f"Не удалось отправить сообщение {subscriber_id}: {e}")
             blocked_users += 1
 
     # Отправляем сообщение администраторам
@@ -347,15 +389,14 @@ async def send_broadcast_with_media_group(photo_paths, message_text):
                     f"Новых пользователей за месяц: {get_new_users_current_month()}"
                 ),
                 parse_mode=types.ParseMode.HTML,
-                # reply_markup=advert_kb  # Если нужна клавиатура, оставь эту строку
-                reply_markup=start_kb_markup  # Пример использования клавиатуры
+                reply_markup=advert_kb  # Если нужна клавиатура, оставь эту строку
+                # reply_markup=start_kb_markup  # Пример использования клавиатуры
             )
         except Exception as e:
             print(f"Не удалось отправить сообщение администратору {admin_user}: {str(e)}", file=sys.stderr)
 
     # Сохраняем статистику рассылки
     insert_broadcast_stats(blocked_users, successful_sends)
-
 
 
 # Пример использования функции рассылки с медиа-группой
@@ -525,6 +566,7 @@ async def handle_poll_answer(poll_answer: types.PollAnswer):
 
 def register_users_handlers(dp: Dispatcher) -> None:
     dp.register_message_handler(start, commands=["start"])
+    dp.register_message_handler(cmd_delete_all_messages, commands=["delete_all_my_messages"])
     dp.register_message_handler(broadcast_command, commands=["broadcast"])
     dp.register_message_handler(service, content_types=['text'], text="Служба заботы")
 
