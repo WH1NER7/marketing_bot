@@ -76,3 +76,7 @@ advert_kb = InlineKeyboardMarkup(row_width=1)
 advert_button1 = InlineKeyboardButton(text="Перейти в тг-канал", url="https://myk.mobz.click/1q9l")
 # problems_kb_btn2 = InlineKeyboardButton(text="Получить гайд", url="https://b24-dvx7b9.bitrix24.site/crm_form_ru7u6/")
 advert_kb.add(advert_button1)
+
+kupalnik_kb = InlineKeyboardMarkup(row_width=1)
+kupalnik_button1 = InlineKeyboardButton(text="Перейти на WB", url="https://missyourkiss.mobz.click/1cj")
+kupalnik_kb.add(kupalnik_button1)

@@ -12,7 +12,7 @@ from bot.database.methods.insert import create_user, insert_broadcast_stats, ins
     update_poll_statistics, insert_quiz_stats, get_new_users_current_month, get_total_subscribers
 from bot.database.methods.update import upd_link, increment_button_counter
 from bot.keyboards.inline import markup_lk, markup_competition, markup_link, faq_kb, shop_kb, problems_kb, \
-    markup_competition_extra, advert_kb
+    markup_competition_extra, advert_kb, kupalnik_kb
 from bot.keyboards.reply import start_kb_markup
 
 
@@ -234,24 +234,12 @@ async def ready_present(message: types.Message):
 async def shocking_price(message: Message):
     increment_button_counter("shocking_price")
 
-    photo = types.InputFile('bot/images/kupalnik.jpg')
+    video = types.InputFile('bot/images/IMG_0828.MOV')
 
-    text_with_link = "Самые яркие летние комплекты по самым вкусным ценам. Будь яркой каждый день, переходи и выбирай \n\
-\n\
-\n\
-Наш TOP бикини купальник TIGER 🔥\n\
-Артикул: [218272630](https://www.wildberries.ru/catalog/218272630/detail.aspx?targetUrlBP)\n\
-\n\
-Черный бикини купальник\n\
-Артикул: [218272629](https://www.wildberries.ru/catalog/218272629/detail.aspx?targetUrlBP)\n\
-\n\
-Туника пляжная\n\
-Артикул: [226609836](https://www.wildberries.ru/catalog/226609836/detail.aspx?targetUrl=BP)\n\
-\n\
-Кроп топ пляжный\n\
-Артикул: [158417968](https://www.wildberries.ru/catalog/158417968/detail.aspx?targetUrl=BP)"
+    text_with_link = "Сияй этим летом! ✨🌊\n\
+Новая коллекция купальников уже в наличии!"
 
-    await message.answer_photo(caption=text_with_link, photo=photo, parse_mode=types.ParseMode.MARKDOWN)
+    await message.answer_video(caption=text_with_link, video=video, parse_mode=types.ParseMode.MARKDOWN, reply_markup=kupalnik_kb, width=1008, height=1280)
 
 
 bot_token = getenv("BOT_TOKEN")
