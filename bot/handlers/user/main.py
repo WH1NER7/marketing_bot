@@ -307,7 +307,7 @@ async def send_broadcast_with_media_group(photo_paths, message_text):
     user_id_and_name = get_all_users()
 
     # Путь к фото, которое будет отправлено
-    photo_path1 = 'bot/images/img_71.png'
+    photo_path1 = 'bot/images/IMG_1472.MOV'
 
     print(user_id_and_name)
     blocked_users = 0
@@ -315,9 +315,16 @@ async def send_broadcast_with_media_group(photo_paths, message_text):
 
     # Шаблон сообщения с плейсхолдером {name}
     message_template = (
-        "<b>{name}, ты уже целых 10 минут ничего не заказывала на вб!</b> 😱\n\
+        "<b>Представь: ты заходишь в комнату, а все оборачиваются на тебя 😳</b>\n\
 \n\
-А у нас как раз появился долгожданный комплект в леопардовом принте, который ты точно не захочешь пропустить! 😉"
+Не потому что громко.\n\
+Не потому что ярко.\n\
+\n\
+А потому что <b><u>уверенность чувствуется на расстоянии.</u></b>\n\
+А знаешь, откуда она начинается?\n\
+С ощущения себя красивой даже под одеждой.\n\
+\n\
+<b>Проверь сама. Выбирай свой идеальный комплект прямо сейчас ❤️</b>"
     )
     # "<a href='https://missyourkiss.mobz.click/khzlu'>«Завораживающая богиня»</a>"
 
@@ -333,12 +340,14 @@ async def send_broadcast_with_media_group(photo_paths, message_text):
             personalized_text = message_template.format(name=cleaned_name)
 
             # Отправляем сообщение
-            sent_message = await bot.send_photo(
+            sent_message = await bot.send_video(
                 subscriber_id,
                 InputFile(photo_path1),
                 caption=personalized_text,
                 parse_mode=types.ParseMode.HTML,
                 reply_markup=advert_kb,
+                width=1080,
+                height=1440
                 # reply_markup=start_kb_markup
             )
 
