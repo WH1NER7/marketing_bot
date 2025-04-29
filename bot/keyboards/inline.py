@@ -73,7 +73,7 @@ problems_kb_add.add(problems_kb_btn1)
 
 
 advert_kb = InlineKeyboardMarkup(row_width=1)
-advert_button1 = InlineKeyboardButton(text="Перейти в тг канал", url="https://t.me/+Wuoqbc1-T502NDVi")
+advert_button1 = InlineKeyboardButton(text="Перейти в тг канал", url="https://t.me/+B5l-HW6AZB40NTQ6")
 # problems_kb_btn2 = InlineKeyboardButton(text="Получить гайд", url="https://b24-dvx7b9.bitrix24.site/crm_form_ru7u6/")
 advert_kb.add(advert_button1)
 
