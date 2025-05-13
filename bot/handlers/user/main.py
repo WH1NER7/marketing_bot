@@ -338,7 +338,7 @@ async def send_broadcast_with_media_group(photo_paths, message_text):
             personalized_text = message_template.format(name=cleaned_name)
 
             # Отправляем сообщение
-            sent_message = await bot.send_video(
+            sent_message = await bot.send_photo(
                 subscriber_id,
                 InputFile(photo_path1),
                 caption=personalized_text,
